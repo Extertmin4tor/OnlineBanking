@@ -18,3 +18,6 @@ h1 {
 
 .sign-up .ui-state-error { padding: .3em; color:blueviolet  }
 .validateTips { border: 1px solid transparent; padding: 0.3em; }
+.hide {
+   display: none;
+}

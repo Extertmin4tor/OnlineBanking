@@ -8,7 +8,6 @@
             allFields = $( [] ).add( name ).add( email ).add( password ).add(repassword),
             tips = $( ".validateTips" );
 
-
         function updateTips( t ) {
             tips
                 .text( t )
@@ -52,7 +51,7 @@
 
         function addUser() {
 
-            console.dir(name);
+           //console.dir(name);
             var valid = true;
             allFields.removeClass( "ui-state-error" );
             valid = valid && checkLength( name, "login", 3, 16 );
