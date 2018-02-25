@@ -58,7 +58,7 @@
             valid = valid && checkLength( email, "email", 6, 80 );
             valid = valid && checkLength( password, "password", 5, 16 );
             valid = valid && checkLength( repassword, "password", 5, 16 );
-            valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
+            valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores and must begin with a letter." );
             valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
             valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
             valid = valid && checkCompare(password, repassword, "Passwords must match");
@@ -67,31 +67,47 @@
                 $.post('signup.php', { login:name.val() , email :email.val(), password:password.val()},
                     function(returnedData){
                         if(returnedData == "ok"){
-                            $( function() {
-                                dialog.dialog("close");
+                               // dialog.dialog("close");
+                                //$("#sign-in").hide();
+                               // $("#sign-up").hide();
+                                //$("#create-user").hide();
                                 succ_dialog.dialog("open");
-                            } );
+                        }else{
+                            name.val('');
+                            email.val('');
+                            password.val('');
+                            repassword.val('');
+                            alreadyuseWindow.dialog('open');
                         }
                     });
             }
             return valid;
         }
 
+        alreadyuseWindow = $("#already-use-reg-text").dialog({
+            resizable: false,
+            draggable: false,
+            autoOpen: false,
+            modal: true
+        });
+
         succ_dialog = $("#success-reg-text").dialog({
             resizable: false,
             draggable: false,
             autoOpen: false,
+            modal: true,
             buttons: {
                 "Accept": function(){
                     succ_dialog.dialog("close");
+                    window.location.replace("personal.php");
                 }
             }
         });
 
         dialog = $( "#sign-up").dialog({
             autoOpen: false,
-            height: 400,
-            width: 350,
+            height: 450,
+            width: 300,
             modal: true,
             resizable: false,
             draggable: false,

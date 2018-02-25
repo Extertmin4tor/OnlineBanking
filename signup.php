@@ -1,52 +1,67 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['email'])) {
-        $login = $_POST['login'];
-        $password = $_POST['password'];
-        $email = $_POST['email'];
-        echo "ok";
+        $login = test_input($_POST["login"]);
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
+            $loginErr = "Only letters and numbers allowed";
+            die();
+        }else{
+            if(strlen($login) > 16 && strlen($login) < 4){
+                $loginErr = "Wrong length";
+                die();
+            }
+        }
+        $pass = test_input($_POST["password"]);
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
+            $passErr = "Only letters and numbers allowed";
+            die();
+        }else{
+            if(strlen($pass) > 32 && strlen($pass) < 8 ){
+                $passErr = "Wrong length";
+                die();
+            }
+        }
+        $email = test_input($_POST["email"]);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format";
+            die();
+        }
+        $dbh = BD_init();
+        $query = $dbh->prepare('SELECT id FROM users WHERE email=:email or login=:login');
+        $query->bindParam(':email', $email);
+        $query->bindParam(':login', $login);
+        $query->execute();
+        if($query->rowCount()==0){
+            $query = $dbh->prepare('INSERT INTO users (login, email, password) VALUES (:login, :email, :password)');
+            $query->bindParam(':login', $login, PDO::PARAM_STR);
+            $query->bindParam(':email', $email, PDO::PARAM_STR);
+            $password = password_hash($pass, PASSWORD_DEFAULT);
+            $query->bindParam(':password', $password, PDO::PARAM_STR);
+            $query->execute();
+            echo "ok";
+        }
+        else{
+            echo "Login or email already in use!";
+            die();
+        }
+        $dbh = null;
+        $query = null;
+    }
 
     } else {
         if (empty($_POST['login'])){
             $loginError = "login is required";
             die();
         }else{
-            $login = test_input($_POST["login"]);
-            if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
-                $loginErr = "Only letters and numbers allowed";
+            if (empty($_POST['password'])){
+                $passError = "password is required";
                 die();
             }else{
-                if(sizeof($login) > 16 && sizeof($login) < 4){
-                    $loginErr = "Wrong length";
+                if (empty($_POST["email"])) {
+                    $emailErr = "Email is required";
                     die();
                 }
             }
-        }
-        if (empty($_POST['password'])){
-            $passError = "password is required";
-            die();
-        }else{
-            $pass = test_input($_POST["password"]);
-            if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
-                $passErr = "Only letters and numbers allowed";
-                die();
-            }else{
-                if(sizeof($password) > 32 && sizeof($password) < 8 ){
-                    $passErr = "Wrong length";
-                    die();
-                }
-            }
-        }
-        if (empty($_POST["email"])) {
-            $emailErr = "Email is required";
-            die();
-        } else {
-            $email = test_input($_POST["email"]);
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "Invalid email format";
-                die();
-            }
-        }
         }
 
     }
@@ -56,4 +71,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         $data = htmlspecialchars($data);
         return $data;
 }
+
+    function BD_init(){
+        try {
+            $dbh = new PDO('mysql:host=localhost;dbname=m4banking',"vhshunter","123789456");
+            return $dbh;
+        } catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
 ?>
