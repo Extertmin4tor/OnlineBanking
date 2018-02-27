@@ -32,13 +32,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         $query->bindParam(':login', $login);
         $query->execute();
         if($query->rowCount()==0){
-            $query = $dbh->prepare('INSERT INTO users (login, email, password) VALUES (:login, :email, :password)');
-            $query->bindParam(':login', $login, PDO::PARAM_STR);
-            $query->bindParam(':email', $email, PDO::PARAM_STR);
-            $password = password_hash($pass, PASSWORD_DEFAULT);
-            $query->bindParam(':password', $password, PDO::PARAM_STR);
-            $query->execute();
+            try {
+                $query = $dbh->prepare('INSERT INTO users (login, password, email) VALUES (:login,  :password ,:email)');
+                $query->bindParam(':login', $login, PDO::PARAM_STR);
+                $query->bindParam(':email', $email, PDO::PARAM_STR);
+                $password = password_hash($pass, PASSWORD_DEFAULT);
+                $query->bindParam(':password', $password, PDO::PARAM_STR);
+                $query->execute();
+            }
+            catch (Exception $e){
+                echo $e->getMessage();
+            }
             echo "ok";
+            $_SESSION['userid'] = $login;
         }
         else{
             echo "Login or email already in use!";
@@ -74,7 +80,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
     function BD_init(){
         try {
-            $dbh = new PDO('mysql:host=localhost;dbname=m4banking',"vhshunter","123789456");
+            $dbh = new PDO('mysql:host=localhost;dbname=m4banking;charset=utf8',"vhshunter","123789456");
+            $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             return $dbh;
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . "<br/>";

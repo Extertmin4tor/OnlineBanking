@@ -71,6 +71,7 @@
                                 //$("#sign-in").hide();
                                // $("#sign-up").hide();
                                 //$("#create-user").hide();
+                                dialog.dialog('close');
                                 succ_dialog.dialog("open");
                         }else{
                             name.val('');
@@ -98,7 +99,7 @@
             modal: true,
             buttons: {
                 "Accept": function(){
-                    succ_dialog.dialog("close");
+                    dialog.dialog("close");
                     window.location.replace("personal.php");
                 }
             }

@@ -39,7 +39,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 } else {
                     echo "ok";
                     $_SESSION['userid'] = $login;
-                    //header("Location: personal.php");
                 }
             }
         }
@@ -64,13 +63,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     return $data;
     }
 
-    function BD_init(){
-        try {
-            $dbh = new PDO('mysql:host=localhost;dbname=m4banking',"vhshunter","123789456");
-            return $dbh;
+function BD_init(){
+    try {
+        $dbh = new PDO('mysql:host=localhost;dbname=m4banking;charset=utf8',"vhshunter","123789456");
+        $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+        return $dbh;
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . "<br/>";
         die();
     }
-    }
+}
 ?>
