@@ -1,4 +1,5 @@
 <?php
+require_once "util.php";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['email'])) {
         $login = test_input($_POST["login"]);
@@ -44,7 +45,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 echo $e->getMessage();
             }
             echo "ok";
-            $_SESSION['userid'] = $login;
+            $query = $dbh->prepare('SELECT id FROM users WHERE email=:email or login=:login');
+            $query->bindParam(':email', $email);
+            $query->bindParam(':login', $login);
+            $query->execute();
+            $_SESSION['userid'] =  $query->fetchColumn(0);;
         }
         else{
             echo "Login or email already in use!";
@@ -78,14 +83,5 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         return $data;
 }
 
-    function BD_init(){
-        try {
-            $dbh = new PDO('mysql:host=localhost;dbname=m4banking;charset=utf8',"vhshunter","123789456");
-            $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-            return $dbh;
-        } catch (PDOException $e) {
-            print "Error!: " . $e->getMessage() . "<br/>";
-            die();
-        }
-    }
+
 ?>

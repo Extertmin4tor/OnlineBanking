@@ -1,4 +1,5 @@
 <?php
+require_once "util.php";
 session_start();
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -24,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
         $dbh = BD_init();
-        $query = $dbh->prepare('SELECT password FROM users WHERE login=:login');
+        $query = $dbh->prepare('SELECT password, id FROM users WHERE login=:login');
         $query->bindParam(':login', $login);
         $query->execute();
         $selected = $query->fetchAll();
@@ -38,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     die();
                 } else {
                     echo "ok";
-                    $_SESSION['userid'] = $login;
+                    $_SESSION['userid'] = $row['id'];
                 }
             }
         }
@@ -63,14 +64,4 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     return $data;
     }
 
-function BD_init(){
-    try {
-        $dbh = new PDO('mysql:host=localhost;dbname=m4banking;charset=utf8',"vhshunter","123789456");
-        $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-        return $dbh;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        die();
-    }
-}
 ?>

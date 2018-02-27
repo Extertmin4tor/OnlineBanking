@@ -1,4 +1,5 @@
 <?php
+require_once "util.php";
 session_start();
 
 if(!isset($_SESSION['userid']))    {
@@ -20,10 +21,21 @@ if(!isset($_SESSION['userid']))    {
 </head>
 <body>
 <button id="create-account">Create account</button><br>
+<div id="accordion-resizer" class="ui-widget-content">
 <div id="accordion">
-    <div id="emptylist">
-        <span>Your have no accounts yet.</span>
-    </div>
+    <?php
+    $db = BD_init();
+    $query = $db->prepare('SELECT * FROM accounts WHERE user_id = :user_id');
+    $query->bindParam(':user_id', $_SESSION['userid']);
+    $query->execute();
+    $selected = $query->fetchAll();
+    foreach($selected as $row){
+        echo "<h3>".$row['id']."</h3><div>
+             Value: ".$row['value']."
+              </div>";
+    }
+    ?>
+</div>
 </div>
 </body>
 <?php
