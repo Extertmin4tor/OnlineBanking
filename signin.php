@@ -40,6 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 } else {
                     echo "ok";
                     $_SESSION['userid'] = $row['id'];
+
                 }
             }
         }

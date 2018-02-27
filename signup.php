@@ -49,7 +49,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             $query->bindParam(':email', $email);
             $query->bindParam(':login', $login);
             $query->execute();
-            $_SESSION['userid'] =  $query->fetchColumn(0);;
+            $_SESSION['userid'] =  $query->fetchColumn(0);
+
         }
         else{
             echo "Login or email already in use!";

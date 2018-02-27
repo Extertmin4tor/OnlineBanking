@@ -38,6 +38,3 @@ if(!isset($_SESSION['userid']))    {
 </div>
 </div>
 </body>
-<?php
-echo $_SESSION['userid'];
-?>
