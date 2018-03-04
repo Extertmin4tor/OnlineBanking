@@ -112,11 +112,15 @@
             modal: true,
             resizable: false,
             draggable: false,
+
             buttons: {
                 "Create an account": addUser,
                 Cancel: function() {
                     dialog.dialog( "close" );
                 }
+            },
+            open: function() {
+                $('.ui-widget-overlay').addClass('custom-overlay');
             },
             close: function() {
                 form[ 0 ].reset();

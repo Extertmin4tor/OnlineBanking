@@ -11,8 +11,8 @@ $db = BD_init();
 
 $query = $db->prepare('INSERT INTO accounts (user_id, value) VALUES (:userid, :value)');
 $query->bindParam(':userid', $_SESSION['userid']);
-$zero = 0;
-$query->bindParam(':value', $zero);
+$money = 1000;
+$query->bindParam(':value', $money);
 $query->execute();
 
 $query = $db->prepare('SELECT id FROM accounts WHERE user_id = :userid ORDER BY id DESC LIMIT 1');
