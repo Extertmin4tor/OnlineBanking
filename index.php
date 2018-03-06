@@ -9,14 +9,15 @@ if (isset($_SESSION['userid'])) {
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to M4Bank</title>
-    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="sign_up.js"></script>
     <script src="sign_in.js"></script>
+    <script src="slider.js"></script>
 </head>
 <body>
 <header>
@@ -34,12 +35,8 @@ if (isset($_SESSION['userid'])) {
     </div>
 
     <div id="right-header">
-        <div id="becomeclientdiv">
-            <button id="create-user" class="button">Become a client</button>
-        </div>
         <div id="sign-in" class="widget" title="Sign in">
             <form action="signin.php" method="post">
-
                 <input type="text" name="login" required="required"
                        class="text ui-widget-content ui-corner-all form_elems" placeholder="login">
                 <input type="password" name="password" required="required"
@@ -47,8 +44,36 @@ if (isset($_SESSION['userid'])) {
                 <input type="submit" name="submit" class="button" value="Log in">
             </form>
         </div>
+        <div id="becomeclientdiv">
+            <button id="create-user" class="button">Become a client</button>
+        </div>
     </div>
 </header>
+<div id="under-header">
+    <div id="block-slider">
+        <div id="viewpoint">
+            <ul id="slidewrapper">
+                <li class="slide"><div class="slide-item">
+                        <h2>Кредиты!</h2>
+                        <p>У нас самые выгодные займы!</p>
+                    </div></li>
+                <li class="slide"><div class="slide-item"><h2>BBBBBBBBBBBBBBBBBBBBBBBBBBBB</h2></div></li>
+                <li class="slide"><div class="slide-item"><h2>CCCCCCCCCCCCCCCCCCCCCCCCCCCC</h2></div></li>
+                <li class="slide"><div class="slide-item"><h2>AAAAAAAAAAAAAAAAAAAAAAAAAAAA</h2></div></li>
+            </ul>
+            <div id="prev-next-btns">
+                <div id="prev-btn"></div>
+                <div id="next-btn"></div>
+            </div>
+            <ul id="nav-btns">
+                <li class="slide-nav-btn"></li>
+                <li class="slide-nav-btn"></li>
+                <li class="slide-nav-btn"></li>
+                <li class="slide-nav-btn"></li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div id="sign-up" class="custom-overlay" title="Sign up">
     <p class="validateTips">All form fields are required.</p>
     <form action="signup.php" method="post">
@@ -66,21 +91,6 @@ if (isset($_SESSION['userid'])) {
     </form>
 </div>
 
-<div id="content">
-    <h2>Алтарь демона </h2>
-    <p>Утром, при ярком солнечном свете, всё выглядело совсем не так и мрачно, как
-        планировалось, а даже наоборот. От свечей остались одни потёки, «кровь»
-        смотрелась как краска, а перья почти целиком разлетелись от ветра. Хорошо
-        сохранились только рисунки мелом, но и они были скорее прикольные, чем злые и загадочные.
-        Дети с неподдельным интересом разглядывали изображения, но без тени тех чувств, которые
-        испытали взрослые ночью при луне.</p>
-    <p>Тем не менее, оказался один человек, на которого работа произвела большое
-        впечатление, — сторож лагеря. Днём он подошёл к автору «алтаря».</p>
-    <p>— Ваша работа? - начал сторож, кивая в сторону площади.<br/>
-        — А что такое? <br/>
-        — Ну, как же... Тут кровь..., перья птицы мёртвой..., знаки какие-то страшные нарисованы...,
-        а у вас всё же дети маленькие, они испугаться могут...</p>
-</div>
 <footer>
     <p id="tel">8 880 5353535 - проще позвонить, чем у кого-то занимать.</p>
     <p id="info">бла-бла-бла.</p>

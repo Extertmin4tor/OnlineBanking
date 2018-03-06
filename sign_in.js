@@ -4,6 +4,9 @@ $( function() {
         draggable: false,
         autoOpen: false,
         modal: true,
+        open: function () {
+                $('.ui-widget-overlay').addClass('custom-overlay');
+        }
     });
     var name = $( "#sign-in [name = login]" ),
         password = $( "#sign-in [name = password]"  );
@@ -13,10 +16,6 @@ $( function() {
         $.post('signin.php', { login:name.val(),  password:password.val()},
             function(returnedData){
                 if(returnedData == "ok"){
-                        //$(this).unbind('click').click();
-                       // $("#sign-in").hide();
-                      //  $("#sign-up").hide();
-                      //  $("#create-user").hide();
                     window.location.replace("personal.php");
                 }else{
                     name.val('');
