@@ -21,9 +21,13 @@ if (!isset($_SESSION['userid'])) {
 </head>
 <body>
 <header>
-    <div id="success-reg-text" title="Congratulation!" style="display: none;">
-        <p>Welcome to M4bank-online!</p>
+    <div id="wrong-dialog" title="Warning" style="display: none;">
+        <p>Something is wrong!</p>
     </div>
+    <div id="success-text" title="Done!" style="display: none;">
+        <p>Transfer operation completed!</p>
+    </div>
+
     <div id="access-denied-reg-text" title="Access denied!" style="display: none;">
         <p>Wrong login or password</p>
     </div>
@@ -34,8 +38,7 @@ if (!isset($_SESSION['userid'])) {
         <a href="index.php"><img src="images/logo.png" class="logo"></a>
     </div>
 
-    <div id="right-header">
-
+    <div id="manage-buttons">
             <button id="create-account" class="buttonpersonal">Create account</button>
             <a href="logout.php">
                 <button id="logout" class="buttonpersonal">Log out</button>
@@ -45,6 +48,7 @@ if (!isset($_SESSION['userid'])) {
 <div id="main">
     <div id="personal">
         <div id="accordion-resizer" class="ui-widget-content">
+        <button id="transfer">Transfer</button>
             <div id="accordion">
                 <?php
                 $db = BD_init();
@@ -65,6 +69,18 @@ if (!isset($_SESSION['userid'])) {
             </div>
         </div>
     </div>
+</div>
+<div id="transfer-dialog" class="custom-overlay" title="Transfer">
+    <p class="validateTips">All form fields are required.</p>
+    <form action="transfer.php" method="post">
+        <label for="number_from">From</label><br>
+        <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <label for="number_to">To</label><br>
+        <input type="text" name="to" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <label for="value">Value</label><br>
+        <input type="money" name="value" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
+        <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
+    </form>
 </div>
 <footer>
     <p id="tel">8 880 5353535 - проще позвонить, чем у кого-то занимать.</p>

@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             die();
         }else {
             foreach ($selected as $row) {
-                if (password_verify($pass, $row['password'])) {
+                if (!password_verify($pass, $row['password'])) {
                     echo "Access denied!";
                     die();
                 } else {

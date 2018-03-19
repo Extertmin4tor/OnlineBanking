@@ -6,7 +6,6 @@
             password = $( "#sign-up  [name = password]"  ),
             repassword = $( "#sign-up  [name = repassword]" ),
             allFields = $( [] ).add( name ).add( email ).add( password ).add(repassword),
-            tips = $( ".validateTips" );
 
         function updateTips( t ) {
             tips
@@ -67,10 +66,6 @@
                 $.post('signup.php', { login:name.val() , email :email.val(), password:password.val()},
                     function(returnedData){
                         if(returnedData == "ok"){
-                               // dialog.dialog("close");
-                                //$("#sign-in").hide();
-                               // $("#sign-up").hide();
-                                //$("#create-user").hide();
                                 dialog.dialog('close');
                                 succ_dialog.dialog("open");
                         }else{
@@ -100,8 +95,10 @@
             buttons: {
                 "Accept": function(){
                     dialog.dialog("close");
-                    window.location.replace("personal.php");
                 }
+            },
+            open: function() {
+                $('.ui-widget-overlay').addClass('custom-overlay');
             }
         });
 
