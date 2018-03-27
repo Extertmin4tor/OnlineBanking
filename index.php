@@ -4,20 +4,19 @@ if (isset($_SESSION['userid'])) {
     header("Location: personal.php");
 }
 ?>
-
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to M4Bank</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="sign_up.js"></script>
-    <script src="sign_in.js"></script>
-    <script src="slider.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script src="js/sign_up.js"></script>
+    <script src="js/sign_in.js"></script>
+    <script src="js/slider.js"></script>
 </head>
 <body>
 <header>
@@ -57,9 +56,9 @@ if (isset($_SESSION['userid'])) {
                         <h2>Кредиты!</h2>
                         <p>У нас самые выгодные займы!</p>
                     </div></li>
-                <li class="slide"><div class="slide-item"><h2>BBBBBBBBBBBBBBBBBBBBBBBBBBBB</h2></div></li>
-                <li class="slide"><div class="slide-item"><h2>CCCCCCCCCCCCCCCCCCCCCCCCCCCC</h2></div></li>
-                <li class="slide"><div class="slide-item"><h2>AAAAAAAAAAAAAAAAAAAAAAAAAAAA</h2></div></li>
+                <li class="slide"><div class="slide-item"><h2>Вставить текст</h2></div></li>
+                <li class="slide"><div class="slide-item"><h2>Вставить текст</h2></div></li>
+                <li class="slide"><div class="slide-item"><h2>Вставить текст</h2></div></li>
             </ul>
             <div id="prev-next-btns">
                 <div id="prev-btn"></div>

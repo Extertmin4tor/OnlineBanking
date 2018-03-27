@@ -1,4 +1,7 @@
-    $( function() {
+
+$(document).ready( function() {
+    signin();
+    $('#create-user').button();
         var dialog, form,
             emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
             name = $( "#sign-up  [name = login]" ),
@@ -6,6 +9,7 @@
             password = $( "#sign-up  [name = password]"  ),
             repassword = $( "#sign-up  [name = repassword]" ),
             allFields = $( [] ).add( name ).add( email ).add( password ).add(repassword),
+            tips = $( ".validateTips" );
 
         function updateTips( t ) {
             tips
@@ -130,7 +134,9 @@
             addUser();
         });
 
-        $( "#create-user" ).button().on( "click", function() {
+        $( "#create-user" ).on( "click", function() {
             dialog.dialog( "open" );
         });
+        $('html').show();
+  
     } );

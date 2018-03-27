@@ -7,6 +7,7 @@ html {
     min-height: 150%;
     font-family:'sans-serif';
     color: #f0f0f0;
+    display: none;
     
 }
 
@@ -26,7 +27,7 @@ html {
     width: 100%;
     height: 75%;
     top: 15%;
-    background-image: url("images/slidebg.jpg"); 
+    background-image: url("/images/slidebg.jpg"); 
 
 }
 
@@ -180,14 +181,15 @@ button{
     margin-right: 0%;
     margin-top: 10px;
     text-align: center;
-    background-image: url("images/slidebg.jpg");
+    background-image: url("/images/slidebg.jpg"); 
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    left: 0%;   
+    right: 0%;
+
 }
 #viewpoint {
-    margin-right: 15%;
-    margin-left: 15%;
     display: table;
     position: relative;
     overflow: hidden;
@@ -196,6 +198,10 @@ button{
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+    margin-right: 25%;
+    margin-left: 25%;
+
+
 }
 
 #slidewrapper {
@@ -235,7 +241,7 @@ button{
     position: absolute;
     width: 50px;
     height: 50px;
-    background-image: url('images/right.png');
+    background-image: url('/images/right.png');
     background-size: cover;
     border-radius: 50%;
     top: calc(50% - 25px);
@@ -244,7 +250,7 @@ button{
     position: absolute;
     width: 50px;
     height: 50px;
-    background-image: url('images/left.png');
+    background-image: url('/images/left.png');
     background-size: cover;
     border-radius: 50%;
     top: calc(50% - 25px);
@@ -270,6 +276,7 @@ button{
     margin: 0;
     text-align: center;
 }
+
 
 .slide-nav-btn {
     position: relative;

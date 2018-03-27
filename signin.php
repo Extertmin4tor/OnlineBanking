@@ -8,7 +8,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
             $loginErr = "Only letters and numbers allowed";
             die();
-        }else{
+        }
+        else
+        {
             if(strlen($login) > 16 && strlen($login) < 4){
                 $loginErr = "Wrong length";
                 die();
@@ -18,7 +20,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
             $passErr = "Only letters and numbers allowed";
             die();
-        }else{
+        }
+        else
+        {
             if(strlen($pass) > 32 && strlen($pass) < 8 ){
                 $passErr = "Wrong length";
                 die();
@@ -32,12 +36,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         if($query->rowCount()==0){
             echo "Access denied!";
             die();
-        }else {
+        }
+        else
+        {
             foreach ($selected as $row) {
                 if (!password_verify($pass, $row['password'])) {
                     echo "Access denied!";
                     die();
-                } else {
+                }
+                 else
+                {
                     echo "ok";
                     $_SESSION['userid'] = $row['id'];
 
@@ -45,11 +53,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
 
-    } else {
+    }
+    else
+    {
         if (empty($_POST['login'])){
             $loginError = "login is required";
             die();
-        }else{
+        }
+        else
+        {
             if (empty($_POST['password'])){
                 $passError = "password is required";
                 die();

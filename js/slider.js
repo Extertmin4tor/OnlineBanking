@@ -1,6 +1,6 @@
 var slideNow = 1;
 var translateWidth = 0;
-var slideInterval = 2000;
+var slideInterval = 4000;
 var slideCount = 0;
 var navBtnId = 0;
 

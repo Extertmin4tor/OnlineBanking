@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function(){
     var from = $("#transfer-dialog [name = from]");
     var to = $("#transfer-dialog [name = to]");
     var value = $("#transfer-dialog [name = value]");
