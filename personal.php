@@ -39,7 +39,6 @@ if (!isset($_SESSION['userid'])) {
     </div>
 
     <div id="manage-buttons">
-            <button id="create-account" class="buttonpersonal">Create account</button>
             <a href="logout.php">
                 <button id="logout" class="buttonpersonal">Log out</button>
             </a>
@@ -47,8 +46,9 @@ if (!isset($_SESSION['userid'])) {
 </header>
 <div id="main">
     <div id="personal">
+        <button id="transfer" class="buttons-accord">Transfer</button>
+        <button id="create-account" class="buttons-accord">Create account</button>
         <div id="accordion-resizer" class="ui-widget-content">
-        <button id="transfer">Transfer</button>
             <div id="accordion">
                 <?php
                 $db = BD_init();
@@ -72,7 +72,7 @@ if (!isset($_SESSION['userid'])) {
 </div>
 <div id="transfer-dialog" class="custom-overlay" title="Transfer">
     <p class="validateTips">All form fields are required.</p>
-    <form action="transfer.php" method="post">
+    <form method="post">
         <label for="number_from">From</label><br>
         <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
         <label for="number_to">To</label><br>
@@ -84,6 +84,6 @@ if (!isset($_SESSION['userid'])) {
 </div>
 <footer>
     <p id="tel">8 880 5353535 - проще позвонить, чем у кого-то занимать.</p>
-    <p id="info">бла-бла-бла.</p>
+    <p id="info">Вставить текст</p>
 </footer>
 </body>

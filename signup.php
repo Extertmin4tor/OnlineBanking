@@ -1,8 +1,28 @@
 <?php
 require_once "util.php";
+session_start();
+include("simple-php-captcha.php");
+set_include_path(get_include_path() . PATH_SEPARATOR . 'phpseclib');
+include('Crypt/RSA.php');
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['email'])) {
-        $login = test_input($_POST["login"]);
+    $login = "";
+    $password = "";
+    $email = "";
+    $rsa = new Crypt_RSA();
+    switch($_POST['command']){
+        case "getpublic":
+            echo $publicKey;
+            exit();  break;
+        case "decrypt":
+            $rsa->loadKey($privateKey); 
+            $rsa->setEncryptionMode(CRYPT_RSA_ENCRYPTION_PKCS1);
+            $login =  $rsa->decrypt(base64_decode($_POST['login']));
+            $password = $rsa->decrypt(base64_decode($_POST['password']));
+            $email = $rsa->decrypt(base64_decode($_POST['email']));
+            break;
+    }
+    if (!empty($login) && !empty($password) && !empty($email) && !empty($_POST["captcha"])) {
+        $login = test_input($login);
         if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
             $loginErr = "Only letters and numbers allowed";
             die();
@@ -12,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 die();
             }
         }
-        $pass = test_input($_POST["password"]);
+        $pass = test_input($password);
         if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
             $passErr = "Only letters and numbers allowed";
             die();
@@ -22,9 +42,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 die();
             }
         }
-        $email = test_input($_POST["email"]);
+        $email = test_input($email);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailErr = "Invalid email format";
+            die();
+        }
+        $captcha = test_input($_POST["captcha"]);
+        if($captcha != $_SESSION['captcha']['code']){
+            $captchaErr = "Captcha is wrong";
             die();
         }
         $dbh = BD_init();

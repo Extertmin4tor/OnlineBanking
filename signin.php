@@ -1,10 +1,25 @@
 <?php
 require_once "util.php";
 session_start();
-
+set_include_path(get_include_path() . PATH_SEPARATOR . 'phpseclib');
+include('Crypt/RSA.php');
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (!empty($_POST['login']) && !empty($_POST['password'])) {
-        $login = test_input($_POST["login"]);
+    $login = "";
+    $password = "";
+    $rsa = new Crypt_RSA();
+    switch($_POST['command']){
+        case "getpublic":
+            echo $publicKey;
+            exit();  break;
+        case "decrypt":
+            $rsa->loadKey($privateKey); 
+            $rsa->setEncryptionMode(CRYPT_RSA_ENCRYPTION_PKCS1);
+            $login =  $rsa->decrypt(base64_decode($_POST['login']));
+            $password = $rsa->decrypt(base64_decode($_POST['password']));
+            break;
+    }
+    if (!empty($login) && !empty($password)) {
+        $login = test_input($login);
         if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
             $loginErr = "Only letters and numbers allowed";
             die();
@@ -16,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 die();
             }
         }
-        $pass = test_input($_POST["password"]);
+        $pass = test_input($password);
         if (!preg_match("/^[a-zA-Z0-9]*$/", $login)) {
             $passErr = "Only letters and numbers allowed";
             die();

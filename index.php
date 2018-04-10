@@ -1,8 +1,10 @@
 <?php
 session_start();
+include("simple-php-captcha.php");
 if (isset($_SESSION['userid'])) {
     header("Location: personal.php");
 }
+$_SESSION['captcha'] = simple_php_captcha();
 ?>
 <!doctype html>
 <html>
@@ -14,6 +16,7 @@ if (isset($_SESSION['userid'])) {
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script src="jsencrypt/jsencrypt.js"></script>
     <script src="js/sign_up.js"></script>
     <script src="js/sign_in.js"></script>
     <script src="js/slider.js"></script>
@@ -73,7 +76,7 @@ if (isset($_SESSION['userid'])) {
         </div>
     </div>
 </div>
-<div id="sign-up" class="custom-overlay" title="Sign up">
+<div id="sign-up" class="custom-overlay sign-up" title="Sign up">
     <p class="validateTips">All form fields are required.</p>
     <form action="signup.php" method="post">
         <label for="name">Login</label><br>
@@ -86,13 +89,17 @@ if (isset($_SESSION['userid'])) {
         <label for="repassword">Confirm password</label><br>
         <input type="password" name="repassword" class="text ui-widget-content ui-corner-all  pop_form_elems"
                required><br>
+        <label for="captcha">Enter symbols</label><br>
+        <input type="text" name="captcha" class="text ui-widget-content ui-corner-all  pop_form_elems"
+               required><br>
+        <?php echo '<img id="captcha" src= "' .$_SESSION['captcha']['image_src']. '"></img>'; ?>
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
 </div>
 
 <footer>
     <p id="tel">8 880 5353535 - проще позвонить, чем у кого-то занимать.</p>
-    <p id="info">бла-бла-бла.</p>
+    <p id="info">Вставить текст.</p>
 </footer>
 </body>
 </html>

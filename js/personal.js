@@ -6,7 +6,9 @@ $(document).ready(function(){
 
     if ($('.test').length > 0) {
         $("#accordion").accordion({
-            heightStyle: "fill"
+            heightStyle: "content",
+            autoHeight: false,
+            clearStyle: true,   
         });
     }
     var transfer = $('#transfer').button();
@@ -54,7 +56,7 @@ $(document).ready(function(){
                                 "</div>"
                             );
                             $("#accordion").accordion({
-                                heightStyle: "fill"
+                                heightStyle: "content"
                             });
                         }
                         else{
@@ -63,11 +65,11 @@ $(document).ready(function(){
                                 "Value: 1000" +
                                 "</div>"
                             );
-                            $("#accordion").last().accordion("refresh");
+                            
+                            $("#accordion").accordion("refresh");
+                            
 
                         }
-
-
                     }
                 },
                 "json"
@@ -77,12 +79,12 @@ $(document).ready(function(){
 
     function makeTransfer(){
         allFields.removeClass( "ui-state-error" );
-        var valid_from = isNumber(from.val(), from);
-        var valid_to = isNumber(to.val(), to);
-        var valid_value = isNumber(value.val(), value);
+        var valid_from = ispNumber(from.val(), from);
+        var valid_to = ispNumber(to.val(), to);
+        var valid_value = ispNumber(value.val(), value);
 
         if(valid_from && valid_to && valid_value){
-            $.post("validate.php", {from:from.val(), to:to.val(), value:value.val()},
+            $.post("acc_operations.php", {from:from.val(), to:to.val(), value:value.val()},
         function(returnedData){
             if(returnedData.code == "ok"){
                $('#accordion').find("h3:contains('" + from.val() + "')").next().replaceWith(
@@ -90,16 +92,15 @@ $(document).ready(function(){
                 "Value: " + returnedData.value_from +
                 "</div>"
                );
-               $("#accordion").last().accordion("refresh");
                if(returnedData.value_to !== null){
                 $('#accordion').find("h3:contains('" + to.val() + "')").next().replaceWith(
                     "<div class ='test'>" +
                     "Value: " + returnedData.value_to +
                     "</div>"
                    );
-                   $("#accordion").last().accordion("refresh");
                 }
-              
+
+               $("#accordion").accordion("refresh");
                succ_dialog.dialog("open");
                dialog.dialog("close");
             }
@@ -112,7 +113,7 @@ $(document).ready(function(){
         }, "json")
         }
         else{
-
+            wrong_dialog.dialog('open');
         }
         
     }
@@ -138,11 +139,12 @@ $(document).ready(function(){
         },
         open: function() {
             $('.ui-widget-overlay').addClass('custom-overlay');
+            $("#accordion-resizer").height(100);
         }
     });
 
-    function isNumber(n, elem) {
-        test = !isNaN(parseFloat(n)) && isFinite(n);
+    function ispNumber(n, elem) {
+        test = !isNaN(parseFloat(n)) && isFinite(n) && n > 0;
         if (!test){
            elem.addClass("ui-state-error");
         }
@@ -150,5 +152,5 @@ $(document).ready(function(){
      }
   
   
-
+     $('html').show();
 });

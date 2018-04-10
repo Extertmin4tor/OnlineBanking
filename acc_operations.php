@@ -1,12 +1,19 @@
 <?php
 require_once "util.php";
 session_start();
+
 function json_error(){
     $return =  $_POST;
     $return['code'] = 'error';
     echo json_encode($return);
+    die();
 }
+
 if($_SERVER['REQUEST_METHOD'] == "POST") {
+    if(!validateValue($_POST['value']) && !validateValue($_POST['from']) && !validateValue($_POST['to'])){
+        json_error();
+        die();
+    }
     $db = BD_init();
     try{
         $query = $db->prepare('SELECT * FROM accounts WHERE id = :id AND user_id = :user_id');
@@ -58,21 +65,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             json_error();
             die();
     }
+}else{
+    json_error();
 }
 
-$return =  $_POST;
 $return['code'] = 'ok';
 $return['value_from'] = $new_from_val;
+
 if($user_id_to == $_SESSION['userid']){
     $return['value_to'] = $new_to_val;
 }
 
-
 echo json_encode($return);
+}
 
 
-   
-
+function validateValue($value){
+    return is_numeric($value) && $value > 0;
 }
 
 ?>

@@ -8,8 +8,10 @@ $(document).ready( function() {
             email = $( "#sign-up [name = email]"  ),
             password = $( "#sign-up  [name = password]"  ),
             repassword = $( "#sign-up  [name = repassword]" ),
+            captcha = $("#sign-up [name = captcha]"),
             allFields = $( [] ).add( name ).add( email ).add( password ).add(repassword),
             tips = $( ".validateTips" );
+        var publicKey;
 
         function updateTips( t ) {
             tips
@@ -65,9 +67,14 @@ $(document).ready( function() {
             valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
             valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
             valid = valid && checkCompare(password, repassword, "Passwords must match");
-
+            $.ajaxSetup({async:false});
             if(valid){
-                $.post('signup.php', { login:name.val() , email :email.val(), password:password.val()},
+                $.post('signup.php', {command:"getpublic"}, function(returnedData){
+                    publicKey = returnedData
+                });
+                var crypt = new JSEncrypt();
+                crypt.setPublicKey(publicKey);
+                $.post('signup.php', { command:"decrypt", login:crypt.encrypt(name.val()) , email :crypt.encrypt(email.val()), password:crypt.encrypt(password.val()), captcha:captcha.val()},
                     function(returnedData){
                         if(returnedData == "ok"){
                                 dialog.dialog('close');
@@ -77,6 +84,7 @@ $(document).ready( function() {
                             email.val('');
                             password.val('');
                             repassword.val('');
+                            captcha.val('');
                             alreadyuseWindow.dialog('open');
                         }
                     });
@@ -98,7 +106,8 @@ $(document).ready( function() {
             modal: true,
             buttons: {
                 "Accept": function(){
-                    dialog.dialog("close");
+                    succ_dialog.dialog("close");
+                    window.location = "/personal.php";
                 }
             },
             open: function() {
@@ -108,8 +117,8 @@ $(document).ready( function() {
 
         dialog = $( "#sign-up").dialog({
             autoOpen: false,
-            height: 450,
-            width: 300,
+            height: 600,
+            width: 400,
             modal: true,
             resizable: false,
             draggable: false,

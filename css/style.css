@@ -5,22 +5,36 @@ html {
     background-repeat: no-repeat;
     min-width: 100%;
     min-height: 150%;
-    font-family:'sans-serif';
+    font-family:'sans-serif' !important;
+    font-size: 1em !important;
     color: #f0f0f0;
     display: none;
-    
 }
 
 #accordion-resizer {
     padding: 10px;
     left: 20%;
     right: 20%;
+    height: 100%;
+    overflow-y: auto;
     position: absolute;
     background-color: rgba(255, 255, 255, 0.0);
     border: 5px solid transparent;
     
 }
 
+.buttons-accord{
+    display: inline-block;
+    left: 21%;
+    right: 20%;
+}
+
+
+#captcha{
+    display: block;
+    margin: 0 auto;
+    padding-top: 15px;
+}
 
 #main {
     position: absolute;
@@ -147,6 +161,8 @@ footer {
     top: 0.5px;
     padding: 0.2px;
 }
+
+
 #sign-in {
     position: relative;
     display: inline-block;
@@ -162,6 +178,8 @@ footer {
     float: right;
     margin-right: 20px;
 }
+
+
 .ui-widget-overlay.custom-overlay {
     background-color: black;
     background-image: none;
@@ -230,11 +248,12 @@ button{
     display: inline;
     float: left;
 }
+
+
 .slide-item {
     width: 100%;
     min-height: 400px;
     font-family:'sans-serif';
-
 }
 
 #next-btn {
@@ -246,6 +265,8 @@ button{
     border-radius: 50%;
     top: calc(50% - 25px);
 }
+
+
 #prev-btn {
     position: absolute;
     width: 50px;
@@ -292,3 +313,4 @@ button{
 .slide-nav-btn:hover {
     cursor: pointer;
 }
+
