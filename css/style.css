@@ -11,12 +11,39 @@ html {
     display: none;
 }
 
+#history-table table{
+    margin: auto;
+}
+#history-table{
+    padding: 10px;
+}
+
+table.paleBlueRows {
+    min-width: 350px;
+    min-height: 200px;
+    text-align: center;
+    color: #4b4b4b;
+    border-collapse: collapse;
+  }
+  table.paleBlueRows td, table.paleBlueRows th {
+    padding: 3px 2px;
+    font-weight: normal;
+  }
+
+  table.paleBlueRows thead {
+    background: #4b4b4b;
+    color: #f0f0f0;
+    font-weight: normal;
+
+  }
+
+
+
 #accordion-resizer {
     padding: 10px;
     left: 20%;
     right: 20%;
-    height: 100%;
-    overflow-y: auto;
+    height: auto;
     position: absolute;
     background-color: rgba(255, 255, 255, 0.0);
     border: 5px solid transparent;
@@ -39,23 +66,21 @@ html {
 #main {
     position: absolute;
     width: 100%;
-    height: 75%;
-    top: 15%;
+    height: 69%;
+    top: 21%;
     background-image: url("/images/slidebg.jpg"); 
 
 }
 
 #logo-div img {
-    position: absolute;
-    height: 250px;
-    width: 250px;
-    top: -70px;
-
+    height: 90%;
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 5px;
 
 }
 
 #logo-div {
-    overflow: visible;
     position: absolute;
     width: 20%;
     height: 100%;
@@ -129,10 +154,9 @@ header {
 }
 
 footer {
-    display: block;
-    height: 15%;
+    height: auto;
     width: 100%;
-    bottom: 0%;
+    top: 90%;
     left: 0%;
     position: absolute;
     text-align: center;
@@ -184,7 +208,8 @@ footer {
     background-color: black;
     background-image: none;
     opacity: 0.7;
-    z-index: 1040;
+    z-index: 1000;
+    
 }
 
 button{
@@ -192,12 +217,10 @@ button{
     padding: .35em;
 }
 
+
 #block-slider{
     position: absolute;
-    top: 20%;
-    margin-left: 0%;
-    margin-right: 0%;
-    margin-top: 10px;
+    top: 15%;
     text-align: center;
     background-image: url("/images/slidebg.jpg"); 
     background-size: cover;
@@ -205,6 +228,9 @@ button{
     background-repeat: no-repeat;
     left: 0%;   
     right: 0%;
+    display: flex;
+    justify-content: center;
+
 
 }
 #viewpoint {
@@ -314,3 +340,107 @@ button{
     cursor: pointer;
 }
 
+#nav-menu{
+    background-color: #ecf0f1;
+    top: 15%;
+    height: 6%;
+    position: absolute;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+  
+#nav-menu ul{
+    padding: 0px;
+    list-style: none;
+    position: absolute;
+    height: 100%;
+
+  }
+  
+  ul.dropdown{ 
+    margin: auto;
+    max-height: 100px; 
+  }
+  
+  ul.dropdown li{ 
+    font-weight: bold; 
+    float: left; 
+    width: 180px; 
+    position: relative;
+    background: #ecf0f1;
+
+  }
+  
+  ul.dropdown a:hover{ 
+    color: #000; 
+  }
+  
+  ul.dropdown li a { 
+    display: block; 
+    padding: 20px 8px;
+    color: #34495e; 
+    position: relative; 
+    text-align: center;
+    text-decoration: none;
+    font-weight: 300;
+  }
+  
+  ul.dropdown li a:hover,
+  ul.dropdown li a.hover{ 
+    background: #24aee8;
+    position: relative;
+    color: #fff;
+  }
+  
+  
+  ul.dropdown ul{ 
+   display: none;
+   position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: 500;
+  }
+  
+  ul.dropdown ul li { 
+    font-weight: normal; 
+    background: #f6f6f6; 
+    color: #000; 
+    border-bottom: 1px solid #ccc; 
+  }
+  
+  ul.dropdown ul li a{ 
+    display: block; 
+    color: #34495e !important;
+    background: #eee !important;
+  } 
+  
+  ul.dropdown ul li a:hover{
+    display: block; 
+    background: #3498db !important;
+    color: #fff !important;
+  } 
+  
+  .drop > a{
+    position: relative;
+  }
+  
+  .drop > a:after{
+    content:"";
+    position: absolute;
+    right: 10px;
+    top: 40%;
+    border-left: 5px solid transparent;
+    border-top: 5px solid #333;
+    border-right: 5px solid transparent;
+  }
+  
+  .drop > a:hover:after{
+    content:"";
+     border-left: 5px solid transparent;
+    border-top: 5px solid #fff;
+    border-right: 5px solid transparent;
+  }

@@ -10,6 +10,7 @@ function BD_init(){
     }
 }
 
+
 $privateKey = <<<EOF
 -----BEGIN RSA PRIVATE KEY-----
 MIICXgIBAAKBgQClLIJjfqHIPYut03pEub6DMvAFv3TDPIO/k/qC3ROlK1Ng6U2t

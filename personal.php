@@ -44,10 +44,22 @@ if (!isset($_SESSION['userid'])) {
             </a>
     </div>
 </header>
+<div id="nav-menu">
+    <ul class="dropdown">
+        <li class="transfer-li"><a>Transfer</a></li>
+        <li class="drop"><a>Payment</a>
+            <ul class="sub_menu">
+        	    <li class="mobile-li"><a>Mobile services</a></li>
+				<li class="utility-li"><a>Utility services</a></li>	
+        	</ul>
+        	</li>
+            </li>
+        <li class="history-li"><a>History</a></li>
+        <li class="create-li"><a>Create account</a></li>
+    </ul>
+</div>
 <div id="main">
     <div id="personal">
-        <button id="transfer" class="buttons-accord">Transfer</button>
-        <button id="create-account" class="buttons-accord">Create account</button>
         <div id="accordion-resizer" class="ui-widget-content">
             <div id="accordion">
                 <?php
@@ -79,6 +91,48 @@ if (!isset($_SESSION['userid'])) {
         <input type="text" name="to" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
         <label for="value">Value</label><br>
         <input type="money" name="value" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
+        <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
+    </form>
+</div>
+<div id="mobile-payment-dialog" class="custom-overlay" title="Mobile payment">
+    <p class="validateTips">All form fields are required.</p>
+    <form method="post">
+        <label for="number_from">From</label><br>
+        <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <label for="number_to">Mobile number</label><br>
+        <input type="text" name="number" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <label for="value">Value</label><br>
+        <input type="money" name="value" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
+        <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
+    </form>
+</div>
+<div id="utility-payment-dialog" class="custom-overlay" title="Utility payment">
+    <p class="validateTips">All form fields are required.</p>
+    <form method="post">
+        <label for="number_from">From</label><br>
+        <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <label for="number_to">Personl account</label><br>
+        <input type="text" name="personal-account" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <label for="value">Value</label><br>
+        <input type="money" name="value" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
+        <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
+    </form>
+</div>
+<div id="filter-history" class="custom-overlay" title="Filter history">
+    <p class="validateTips">All form fields are required.</p>
+    <form method="post" id="filter-histor-form" action="history.php">
+        <label for="number_from">From</label><br>
+        <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <label for="number_to">To</label><br>
+        <input type="text" name="personal-account" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <label for="value">Value</label><br>
+        <input type="money" name="value" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
+        <label for="value">Date bot</label><br>
+        <input type="money" name="date_bot" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
+        <label for="value">Date top</label><br>
+        <input type="money" name="date_top" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
+        <label for="value">Operation</label><br>
+        <input type="money" name="operation" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
 </div>
