@@ -1,5 +1,7 @@
 <?php
 require_once "util.php";
+ini_set('session.gc_maxlifetime', 300);
+ini_set('session.cookie_lifetime', 0);
 session_start();
 include("simple-php-captcha.php");
 set_include_path(get_include_path() . PATH_SEPARATOR . 'phpseclib');

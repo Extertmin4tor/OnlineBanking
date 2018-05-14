@@ -1,5 +1,7 @@
 <?php
 require_once "util.php";
+ini_set('session.gc_maxlifetime', 300);
+ini_set('session.cookie_lifetime', 0);
 session_start();
 
 function json_error(){
@@ -76,7 +78,7 @@ function save_history($db, $type){
         $query->bindParam(':account_id', $_POST['from']);
         $query->bindParam(':value', $_POST['value']);
         $query->bindParam(':reciever', $_POST['to']);
-        $date = date('Y-m-d H:i:s');
+        $date = date('y-m-d');
         $query->bindParam(':date', $date);
         $query->bindParam(':type', $type);
         $query->execute();

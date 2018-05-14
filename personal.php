@@ -1,5 +1,7 @@
 <?php
 require_once "util.php";
+ini_set('session.gc_maxlifetime', 300);
+ini_set('session.cookie_lifetime', 0);
 session_start();
 
 if (!isset($_SESSION['userid'])) {
@@ -40,7 +42,7 @@ if (!isset($_SESSION['userid'])) {
 
     <div id="manage-buttons">
             <a href="logout.php">
-                <button id="logout" class="buttonpersonal">Log out</button>
+                <button id="logout" class="button">Log out</button>
             </a>
     </div>
 </header>
@@ -122,17 +124,17 @@ if (!isset($_SESSION['userid'])) {
     <p class="validateTips">All form fields are required.</p>
     <form method="post" id="filter-histor-form" action="history.php">
         <label for="number_from">From</label><br>
-        <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems"><br>
         <label for="number_to">To</label><br>
-        <input type="text" name="personal-account" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
+        <input type="text" name="personal-account" class="text ui-widget-content ui-corner-all pop_form_elems"><br>
         <label for="value">Value</label><br>
-        <input type="money" name="value" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
-        <label for="value">Date bot</label><br>
-        <input type="money" name="date_bot" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
-        <label for="value">Date top</label><br>
-        <input type="money" name="date_top" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
+        <input type="text" name="value" class="text ui-widget-content ui-corner-all  pop_form_elems"><br>
+        <label for="value">Date from</label><br>
+        <input type="date" name="date-bot"  class="text ui-widget-content ui-corner-all  pop_form_elems"><br>
+        <label for="value">Date to</label><br>
+        <input type="date" name="date-top" size="30" class="text ui-widget-content ui-corner-all  pop_form_elems"><br>
         <label for="value">Operation</label><br>
-        <input type="money" name="operation" class="text ui-widget-content ui-corner-all  pop_form_elems" required><br>
+        <input type="text" name="operation" class="text ui-widget-content ui-corner-all  pop_form_elems"><br>
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
 </div>

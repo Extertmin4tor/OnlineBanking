@@ -1,4 +1,7 @@
 <?php
+ini_set('session.gc_maxlifetime', 300);
+ini_set('session.cookie_lifetime', 0);
+session_set_cookie_params(0);
 session_start();
 include("simple-php-captcha.php");
 if (isset($_SESSION['userid'])) {
@@ -43,15 +46,15 @@ $_SESSION['captcha'] = simple_php_captcha();
                        class="text ui-widget-content ui-corner-all form_elems" placeholder="login">
                 <input type="password" name="password" required="required"
                        class="text ui-widget-content ui-corner-all form_elems" placeholder="password">
-                <input type="submit" name="submit" class="button" value="Log in">
+                <input type="submit"  name="submit" class="button submit-button" value="Log in">
             </form>
-        </div>
-        <div id="becomeclientdiv">
             <button id="create-user" class="button">Become a client</button>
         </div>
     </div>
+
+
 </header>
-<div id="under-header">
+<div id="bg-block-slider">
     <div id="block-slider">
         <div id="viewpoint">
             <ul id="slidewrapper">
@@ -76,6 +79,10 @@ $_SESSION['captcha'] = simple_php_captcha();
         </div>
     </div>
 </div>
+<footer>
+    <p id="tel">8 880 5353535 - проще позвонить, чем у кого-то занимать.</p>
+    <p id="info">Вставить текст.</p>
+</footer>
 <div id="sign-up" class="custom-overlay sign-up" title="Sign up">
     <p class="validateTips">All form fields are required.</p>
     <form action="signup.php" method="post">
@@ -96,10 +103,5 @@ $_SESSION['captcha'] = simple_php_captcha();
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
 </div>
-
-<footer>
-    <p id="tel">8 880 5353535 - проще позвонить, чем у кого-то занимать.</p>
-    <p id="info">Вставить текст.</p>
-</footer>
 </body>
 </html>

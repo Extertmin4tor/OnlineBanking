@@ -1,5 +1,7 @@
 <?php
 require_once "util.php";
+ini_set('session.gc_maxlifetime', 300);
+ini_set('session.cookie_lifetime', 0);
 session_start();
 
 if (!isset($_SESSION['userid'])) {
@@ -39,112 +41,78 @@ if (!isset($_SESSION['userid'])) {
     </div>
     <div id="manage-buttons">
             <a href="logout.php">
-                <button id="logout" class="buttonpersonal">Log out</button>
+                <button id="logout" class="button">Log out</button>
             </a>
     </div>
 </header>
-<div >
 <div id="main">
     <?php
         $db = BD_init();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             try{
-                
                 $qr = "SELECT account_id, value, reciever, date, type FROM operations_history WHERE user_id=:user_id";
-                $from = $_POST['from'];
-                $to = $_POST['personal-account'];
-                $value = $_POST['value'];
-                $date_bot = $_POST['date_bot'];
-                $date_top = $_POST['date_top'];
-                $type = $_POST['operation'];
+                $from = test_input($_POST['from']);
+                $to = test_input($_POST['personal-account']);
+                $value = test_input($_POST['value']);
+                $date_bot = test_input($_POST['date-bot']);
+                $date_top = test_input($_POST['date-top']);
+                $type = test_input($_POST['operation']);
                 
                 if($from=="" && $to=="" && $value=="" && $date_bot=="" && $date_top=="" && $type==""){
                 }
                 else{
-                if($from != ""){
-                    
-                    $qr = $qr." AND account_id=:account_id";
-                   
-             
-                                                  
+                if($from != ""){   
+                    $qr = $qr." AND account_id=:account_id";                                
                 }
                 if($to != ""){
-                    $qr = $qr." AND reciever=:reciever";
-               
-                      
+                    $qr = $qr." AND reciever=:reciever";     
                 }
                 if($value != ""){
                     $qr = $qr." AND value=:value";
-                 
-                 
                 }
                 if($date_bot != ""){
                     $qr = $qr." AND date > :date_bot";
-   
-                 
                 }
                 if($date_top != ""){
-                    $qr = $qr." AND date > :date_top";
-
-                     
+                    $qr = $qr." AND date > :date_top";  
                 }
                 if($type != ""){
-                    $qr = $qr." AND type=:type";
-                    
-                     
+                    $qr = $qr." AND type=:type";   
                 }
-                
             }
-            
             $query = $db->prepare($qr);
             if($from=="" && $to=="" && $value=="" && $date_bot=="" && $date_top=="" && $type==""){
             }
             else{
             if($from != ""){
-                
-                $query->bindParam(':account_id', $from);
-                                                
+                $query->bindParam(':account_id', $from);                                
             }
             if($to != ""){
-                $query->bindParam(':reciever', $to); 
-           
-                  
+                $query->bindParam(':reciever', $to);     
             }
             if($value != ""){
-                $query->bindParam(':value', $value);  
-             
-             
+                $query->bindParam(':value', $value);   
             }
             if($date_bot != ""){
                 $query->bindParam(':date_bot', $date_bot);
-
-             
             }
             if($date_top != ""){
-                $query->bindParam(':date_top', $date_top);
-
-                 
+                $query->bindParam(':date_top', $date_top);    
             }
             if($type != ""){
-                $query->bindParam(':type', $type); 
-                
-                 
+                $query->bindParam(':type', $type);     
             }
             
         }
             $query->bindParam(':user_id', $_SESSION['userid']);
-        
-
             $query->execute();
               
             } catch(Exception $e){
-                echo "Nothing to show!";
-                die();
+                echo "<div class=\"nothing-to-show\">Nothing to show!</div>";
             }
             $value_from = 0;
             if ($query->rowCount() == 0) {
-                echo "Nothing to show!";
-                die();
+                echo "<div class=\"nothing-to-show\">Nothing to show!</div>";
             } else {
                 $selected = $query->fetchAll();
                 echo "<div id=\"history-table\">";
@@ -176,10 +144,16 @@ if (!isset($_SESSION['userid'])) {
             echo json_encode($return);
             die();
         }
+
+        function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+        return $data;
+        }
     ?>
 
     </div>
-
 <footer>
     <p id="tel">8 880 5353535 - проще позвонить, чем у кого-то занимать.</p>
     <p id="info">Вставить текст</p>

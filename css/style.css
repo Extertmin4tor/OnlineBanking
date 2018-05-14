@@ -1,126 +1,70 @@
 html {
-    background : rgba(180, 180, 180, 0.47);
+    background-image: url("/images/123.jpg"); 
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    min-width: 100%;
-    min-height: 150%;
     font-family:'sans-serif' !important;
     font-size: 1em !important;
     color: #f0f0f0;
     display: none;
 }
-
-#history-table table{
-    margin: auto;
-}
-#history-table{
-    padding: 10px;
-}
-
-table.paleBlueRows {
-    min-width: 350px;
-    min-height: 200px;
-    text-align: center;
-    color: #4b4b4b;
-    border-collapse: collapse;
-  }
-  table.paleBlueRows td, table.paleBlueRows th {
-    padding: 3px 2px;
-    font-weight: normal;
-  }
-
-  table.paleBlueRows thead {
-    background: #4b4b4b;
-    color: #f0f0f0;
-    font-weight: normal;
-
-  }
-
-
-
-#accordion-resizer {
-    padding: 10px;
-    left: 20%;
-    right: 20%;
-    height: auto;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.0);
-    border: 5px solid transparent;
-    
+/****************header****************/
+header{
+    margin-bottom: 10px;
+    text-align: justify;
+    letter-spacing: 1px;
+    padding: 2em 10%;
 }
 
-.buttons-accord{
+#right-header {
     display: inline-block;
-    left: 21%;
-    right: 20%;
-}
 
-
-#captcha{
-    display: block;
-    margin: 0 auto;
-    padding-top: 15px;
-}
-
-#main {
-    position: absolute;
-    width: 100%;
-    height: 69%;
-    top: 21%;
-    background-image: url("/images/slidebg.jpg"); 
+    
 
 }
-
+#logo-div {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    text-align: left;
+}
 #logo-div img {
     height: 90%;
-    width: 100%;
+    width: auto;
     padding-top: 5px;
     padding-left: 5px;
 
 }
-
-#logo-div {
-    position: absolute;
-    width: 20%;
+header > div::before {
+    content: '';
     height: 100%;
-
+}
+header::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
 }
 
-#right-header {
-    left: 30%;
-    min-width: 70%;
-    height: 100%;
-    position: absolute;
+#sign-in form {
     float:left;
-    overflow: visible;
-
 }
 
-#personal {
-    margin-bottom: 25%;
-    position: absolute;
-    min-width: 100%;
-    min-height: 50%;
-
+#create-user{
+    float:left;
 }
+
 
 .button {
     font-size: 2ch;
     font-family: "sans-serif";
     background: rgba(255, 255, 255, 0.5);
 }
-
-.buttonpersonal {
-    margin: 5px;
-    font-size: 2ch;
-    font-family: "sans-serif";
-    background: rgba(255, 255, 255, 0.5);
-}
-
-#manage-buttons {
-    float: right;
-    margin-right: 10px;
+.ui-widget-overlay.custom-overlay {
+    background-color: black;
+    background-image: none;
+    opacity: 0.7;
+    z-index: 1000;
+    
 }
 
 input.pop_form_elems {
@@ -136,93 +80,25 @@ input.form_elems {
     background: rgba(255, 255, 255, 0.5);
 
 }
-body{
-    position: absolute;
-    width: 100%;
-    height: auto;
-    min-height: 150%;
-}
-
-header {
-    display: block;
-    height: 15%;
-    width: 100%;
-    top: 0%;
-    left: 0%;
-    position: absolute;
-
-}
-
-footer {
-    height: auto;
-    width: 100%;
-    top: 90%;
-    left: 0%;
-    position: absolute;
-    text-align: center;
-    background-color: #4b4b4b;
-    color: #dbdbdb;
-
-}
-
-#content{
-    width: 50%;
-    height: auto;
-    top:15%;
-    bottom: 15%;
-    position: absolute;
-    font-family: sans-serif;
-    max-height: 70%;
-}
-
-#becomeclientdiv{
-    position: absolute;
-    min-width: 25%;
-    max-width: 25%;
-    height: 100%;
-    left: 75%;
-    overflow: hidden;
-    top: 0.5px;
-    padding: 0.2px;
-}
-
-
-#sign-in {
-    position: relative;
-    display: inline-block;
-    max-width: 75%;
-    min-width: 75%;
-    height: 100%;
-    left:0%;
-    overflow: hidden;
-
-}
-#create-user{
-    position: relative;
-    float: right;
-    margin-right: 20px;
-}
-
-
-.ui-widget-overlay.custom-overlay {
-    background-color: black;
-    background-image: none;
-    opacity: 0.7;
-    z-index: 1000;
-    
-}
 
 button{
+    margin: 6px;
+    padding: .35em;
+}
+
+.submit-button{
     margin: 5px;
     padding: .35em;
 }
 
-
+/**********slider************************/
+#bg-block-slider{
+    background: rgba(12, 177, 206, 0.5);
+}
 #block-slider{
-    position: absolute;
     top: 15%;
     text-align: center;
-    background-image: url("/images/slidebg.jpg"); 
+
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -230,9 +106,10 @@ button{
     right: 0%;
     display: flex;
     justify-content: center;
-
-
+    padding: 10px;
 }
+
+
 #viewpoint {
     display: table;
     position: relative;
@@ -331,7 +208,7 @@ button{
     list-style: none;
     width: 20px;
     height: 20px;
-    background-color: #dbdbdb;
+    background-color:rgba(219, 219, 219, 0.5);
     border-radius: 50%;
     margin: 3px;
 }
@@ -340,25 +217,65 @@ button{
     cursor: pointer;
 }
 
+
+/*********footer***************************/
+footer {
+    width: auto;
+    text-align: center;
+    background-color: rgba(75, 75, 75, 0.5);
+    color: #dbdbdb;
+    padding: 10px;
+
+}
+
+/********personal****************/
+#main {
+    background: rgba(12, 177, 206, 0.5);
+    text-align: center;
+    min-height: 300px;
+
+}
+
+#accordion-resizer {
+    margin: auto;
+    padding: 10px;
+    width: 50%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.0);
+    border: 5px solid transparent;
+    
+}
+
+.buttons-accord{
+    display: inline-block;
+}
+
+
+#captcha{
+    display: block;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+
+
 #nav-menu{
-    background-color: #ecf0f1;
-    top: 15%;
-    height: 6%;
-    position: absolute;
+    background-color: rgb(236,240,241, 0.7);
     min-width: 100%;
     display: flex;
     justify-content: center;
 
 }
 
+.ui-accordion-header{
+    background-color:rgb(21,184,183, 0.6);
+ }
 
   
 #nav-menu ul{
     padding: 0px;
     list-style: none;
-    position: absolute;
-    height: 100%;
-
+    height: auto;
   }
   
   ul.dropdown{ 
@@ -371,18 +288,18 @@ button{
     float: left; 
     width: 180px; 
     position: relative;
-    background: #ecf0f1;
+    background: rgba(236, 240, 241, 0);
 
   }
   
   ul.dropdown a:hover{ 
-    color: #000; 
+    color: rgb(255,255,255, 0.5);
   }
   
   ul.dropdown li a { 
     display: block; 
     padding: 20px 8px;
-    color: #34495e; 
+    color: rgb(52,73,94); 
     position: relative; 
     text-align: center;
     text-decoration: none;
@@ -391,9 +308,9 @@ button{
   
   ul.dropdown li a:hover,
   ul.dropdown li a.hover{ 
-    background: #24aee8;
+    background: rgb(21,184,183, 0.6);
     position: relative;
-    color: #fff;
+    color: rgb(0,0,0,1);
   }
   
   
@@ -407,21 +324,21 @@ button{
   
   ul.dropdown ul li { 
     font-weight: normal; 
-    background: #f6f6f6; 
-    color: #000; 
-    border-bottom: 1px solid #ccc; 
+    background: rgb(246,246,246,0.5);
+    color:rgb(255,225,255, 1);
+    border-bottom: 1px solid rgb(204,204,204, 0.5);
   }
   
   ul.dropdown ul li a{ 
     display: block; 
-    color: #34495e !important;
-    background: #eee !important;
+    color: rgb(52,73,94) !important;
+    background: rgb(246,246,246,0.5) !important;
   } 
   
   ul.dropdown ul li a:hover{
     display: block; 
-    background: #3498db !important;
-    color: #fff !important;
+    background:  rgb(21,184,183, 0.6) !important;
+    color:rgb(255,225,255) !important;
   } 
   
   .drop > a{
@@ -444,3 +361,157 @@ button{
     border-top: 5px solid #fff;
     border-right: 5px solid transparent;
   }
+
+@media screen and (max-width: 726px) {
+    #logo-div {
+        display: none;
+    } 
+    
+    #viewpoint {
+        display: table;
+        position: relative;
+        overflow: hidden;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        margin-right: 1%;
+        margin-left: 1%;
+    }
+    #accordion-resizer {
+        margin: auto;
+        width: 80%;
+        height: auto;
+        background-color: rgba(255, 255, 255, 0.0);
+        border: 5px solid transparent;
+        text-align: center;
+        
+    }
+
+    #nav-menu{
+        background-color: rgba(255, 255, 255, 0.0);
+        display: flex;
+        justify-content: center;
+        height: 400px;
+    
+    }
+
+
+
+      
+      ul.dropdown li{ 
+        font-weight: bold; 
+        float: left; 
+        width: 100%; 
+        position: relative;
+        background: #ecf0f1;
+    
+      }
+      
+      ul.dropdown a:hover{ 
+        color: #000; 
+      }
+      
+      ul.dropdown li a { 
+        display: block; 
+        padding: 20px 8px;
+        color: #34495e; 
+        position: relative; 
+        text-align: center;
+        text-decoration: none;
+        font-weight: 300;
+      }
+
+   
+
+      ul.dropdown li a:hover,
+      ul.dropdown li a.hover{ 
+        background: rgb(21,184,183, 0.6);
+        position: relative;
+        color: #fff;
+      }
+      
+      
+      ul.dropdown ul{ 
+       display: none;
+       position: absolute; 
+        top: 0; 
+        left: 0; 
+        z-index: 500;
+      }
+      
+      ul.dropdown ul li { 
+        font-weight: normal; 
+        background: #f6f6f6; 
+        color: #000; 
+        border-bottom: 1px solid #ccc; 
+      }
+      
+      ul.dropdown ul li a{ 
+        display: block; 
+        color: #34495e !important;
+        background: #eee !important;
+      } 
+      
+      ul.dropdown ul li a:hover{
+        display: block; 
+        background: rgb(21,184,183, 0.6);
+        color: #fff !important;
+      } 
+      
+      .drop > a{
+        position: relative;
+      }
+      
+      .drop > a:after{
+        content:"";
+        position: absolute;
+        right: 10px;
+        top: 40%;
+        border-left: 5px solid transparent;
+        border-top: 5px solid #333;
+        border-right: 5px solid transparent;
+      }
+      
+      .drop > a:hover:after{
+        content:"";
+         border-left: 5px solid transparent;
+        border-top: 5px solid #fff;
+        border-right: 5px solid transparent;
+      }
+    
+}
+
+
+/******history*********/
+
+#history-table table{
+    margin: auto;
+}
+#history-table{
+    padding: 10px;
+    overflow: auto;
+}
+.nothing-to-show {
+    text-align: center;
+}
+table.paleBlueRows {
+    min-width: 350px;
+    min-height: 200px;
+    text-align: center;
+    color: #4b4b4b;
+    border-collapse: collapse;
+  }
+  table.paleBlueRows td, table.paleBlueRows th {
+    padding: 3px 2px;
+    font-weight: normal;
+  }
+
+  table.paleBlueRows thead {
+    background-color: rgba(75, 75, 75, 0.5);
+    color: #f0f0f0;
+    font-weight: normal;
+
+  }
+

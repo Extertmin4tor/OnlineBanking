@@ -272,7 +272,6 @@ $(document).ready(function(){
 
     $('#logout').button();
 
-    
     function showHistory(){
         $("#filter-histor-form").submit();
     }
@@ -286,22 +285,8 @@ $(document).ready(function(){
             $.post("acc_operations.php", {from:from.val(), to:to.val(), value:value.val()},
         function(returnedData){
             if(returnedData.code == "ok"){
-               $('#accordion').find("h3:contains('" + from.val() + "')").next().replaceWith(
-                "<div class ='test'>" +
-                "Value: " + returnedData.value_from +
-                "</div>"
-               );
-               if(returnedData.value_to !== null){
-                $('#accordion').find("h3:contains('" + to.val() + "')").next().replaceWith(
-                    "<div class ='test'>" +
-                    "Value: " + returnedData.value_to +
-                    "</div>"
-                   );
-                }
-
-               $("#accordion").accordion("refresh");
-               succ_dialog.dialog("open");
-               dialog.dialog("close");
+                location.reload();
+            //    
             }
             else{
                 from.val('');
@@ -328,14 +313,15 @@ $(document).ready(function(){
             $.post("payments.php", {code: "mobile", from:from1.val(), to:to1.val(), value:value1.val()},
             function(returnedData){
                 if(returnedData.code = "ok"){
-                    $('#accordion').find("h3:contains('" + from1.val() + "')").next().replaceWith(
-                        "<div class ='test'>" +
-                        "Value: " + returnedData.value_from +
-                        "</div>"
-                       );
-                    $("#accordion").accordion("refresh");
-                    mobile_dialog.dialog("close");
-                    succ_dialog.dialog("open");
+                    location.reload();
+                    // $('#accordion').find("h3:contains('" + from1.val() + "')").next().replaceWith(
+                    //     "<div class ='test'>" +
+                    //     "Value: " + returnedData.value_from +
+                    //     "</div>"
+                    //    );
+                    // $("#accordion").accordion("refresh");
+                    // mobile_dialog.dialog("close");
+                    // succ_dialog.dialog("open");
                     
                 }
                 else{
@@ -359,15 +345,15 @@ $(document).ready(function(){
             $.post("payments.php", {code: "utility", from:from2.val(), to:to2.val(), value:value2.val()},
             function(returnedData){
                 if(returnedData.code = "ok"){
-                    $('#accordion').find("h3:contains('" + from2.val() + "')").next().replaceWith(
-                        "<div class ='test'>" +
-                        "Value: " + returnedData.value_from +
-                        "</div>"
-                       );
-                    $("#accordion").accordion("refresh");
-                    utility_dialog.dialog("close");
-                    succ_dialog.dialog("open");
-                    
+                    // $('#accordion').find("h3:contains('" + from2.val() + "')").next().replaceWith(
+                    //     "<div class ='test'>" +
+                    //     "Value: " + returnedData.value_from +
+                    //     "</div>"
+                    //    );
+                    // $("#accordion").accordion("refresh");
+                    // utility_dialog.dialog("close");
+                    // succ_dialog.dialog("open");
+                    location.reload();
                 }
                 else{
                     from1.val('');
