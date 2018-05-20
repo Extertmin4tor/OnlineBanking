@@ -1,0 +1,82 @@
+.history{
+  border-collapse: collapse;
+  background-color:rgba(219, 219, 219, 0.7);
+  border-radius: 10px;
+  overflow: auto;
+  max-width: 800px;
+  width: 100%;
+  min-width: 400px;
+  margin: 0 auto;
+  font-weight: 200;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+  
+}
+ .history td,  .history th {
+  padding-left: 8px;
+  color: #dbdbdb; 
+  
+}
+body{
+  overflow: auto;
+}
+.history tbody tr {
+  height: 48px;
+  border-bottom: 1px solid black;
+}
+ .history tbody tr:last-child {
+  border: 0;
+}
+.history th {
+  text-align: center;
+}
+.history tr:nth-child(odd){
+  background-color: rgba(12, 177, 206, 0.2);
+}
+.history tr:nth-child(1){
+  background-color: rgba(12, 177, 206, 0.9);
+}
+.history thead  {
+   height: 60px;
+
+   padding: 10px;
+
+
+}
+.history td{
+  color: rgb(52,73,94);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.filter-table{
+  margin:auto;
+  border-collapse: collapse;
+}
+
+#filter-history input{
+  width: 60% !important;
+  height: auto;
+}
+#filter-history .button {
+  width: 20% !important;
+}
+form .button{
+  width: 100% !important;
+}
+
+@media screen and (max-width: 800px) {
+
+  #nav-menu{
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.0);
+    display: flex;
+    justify-content: center;
+    min-height: 127px !important;
+    margin-bottom: 10px;
+    border-radius: 10px;
+
+}
+
+
+}

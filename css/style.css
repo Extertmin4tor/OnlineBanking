@@ -3,16 +3,17 @@ html {
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    font-family:'sans-serif' !important;
-    font-size: 1em !important;
+    font-family:sans-serif!important;
+    font-size: 20px !important;
+    font-weight: 200;
     color: #f0f0f0;
     display: none;
+    border-radius: 10px;
 }
 /****************header****************/
 header{
     margin-bottom: 10px;
-    text-align: justify;
-    letter-spacing: 1px;
+
     padding: 2em 10%;
 }
 
@@ -33,6 +34,7 @@ header{
     width: auto;
     padding-top: 5px;
     padding-left: 5px;
+    
 
 }
 header > div::before {
@@ -47,6 +49,29 @@ header::after {
 
 #sign-in form {
     float:left;
+    
+}
+form input{
+    background: rgb(246,246,246,0.7) !important;
+    border: 1px solid  rgba(75, 75, 75, 0.7) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ui-widget-header{
+    background: rgb(246,246,246,0.7) !important;
+    border: 1px solid  rgba(75, 75, 75, 0.7) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.ui-widget-content{
+    background: rgb(246,246,246,0.7) !important;
+    border: 1px solid  rgba(75, 75, 75, 0.7) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ui-widget{
+    background: rgb(246,246,246,0.7) !important;
+    border: 1px solid  rgba(75, 75, 75, 0.7) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #create-user{
@@ -54,11 +79,17 @@ header::after {
 }
 
 
+
 .button {
-    font-size: 2ch;
-    font-family: "sans-serif";
-    background: rgba(255, 255, 255, 0.5);
+   
+    text-align: center;
+    margin: 6px !important;
+    padding: 6.4px !important;
+    background: rgb(246,246,246,0.7) !important;
+    border: 1px solid  rgba(75, 75, 75, 0.7) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .ui-widget-overlay.custom-overlay {
     background-color: black;
     background-image: none;
@@ -67,23 +98,25 @@ header::after {
     
 }
 
-input.pop_form_elems {
-    width: 95%;
+
+
+input {
     padding: .4em;
 }
 
-input.form_elems {
+input {
     margin: 5px;
     font-size: 2ch;
     font-family: "sans-serif";
     padding: .35em;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.7);
 
 }
 
 button{
     margin: 6px;
     padding: .35em;
+    
 }
 
 .submit-button{
@@ -93,12 +126,14 @@ button{
 
 /**********slider************************/
 #bg-block-slider{
-    background: rgba(12, 177, 206, 0.5);
+    background: rgba(12, 177, 206, 0.8);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 10px;
+    border-radius: 10px;
 }
 #block-slider{
     top: 15%;
     text-align: center;
-
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -167,6 +202,7 @@ button{
     background-size: cover;
     border-radius: 50%;
     top: calc(50% - 25px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 
@@ -178,6 +214,7 @@ button{
     background-size: cover;
     border-radius: 50%;
     top: calc(50% - 25px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #prev-btn:hover, #next-btn:hover {
@@ -192,6 +229,39 @@ button{
     right: 20px;
 }
 
+#prev{
+    text-decoration: none;
+    padding: 8px 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: inline-block;
+    background-color: rgb(246,246,246,0.7);
+    color: rgb(52,73,94);
+}
+
+#next{
+    text-decoration: none;
+    padding: 8px 16px;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(246,246,246,0.7);
+    color: rgb(52,73,94);
+}
+
+#next:hover{
+    background-color: rgba(75, 75, 75, 0.7);
+    color: #dbdbdb;
+}
+
+#prev:hover{
+    background-color: rgba(75, 75, 75, 0.7);
+    color: #dbdbdb;
+}
 #nav-btns {
     position: absolute;
     width: 100%;
@@ -208,9 +278,10 @@ button{
     list-style: none;
     width: 20px;
     height: 20px;
-    background-color:rgba(219, 219, 219, 0.5);
+    background-color:rgba(219, 219, 219, 0.7);
     border-radius: 50%;
     margin: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .slide-nav-btn:hover {
@@ -222,29 +293,27 @@ button{
 footer {
     width: auto;
     text-align: center;
-    background-color: rgba(75, 75, 75, 0.5);
+    background-color: rgba(75, 75, 75, 0.7);
     color: #dbdbdb;
-    padding: 10px;
 
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
 }
 
 /********personal****************/
 #main {
-    background: rgba(12, 177, 206, 0.5);
+    background: rgba(12, 177, 206, 0.7);
     text-align: center;
     min-height: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10px 0 10px 0;
+    padding: 20px 0;
+    border-radius: 10px;
+    overflow: auto;
 
 }
 
-#accordion-resizer {
-    margin: auto;
-    padding: 10px;
-    width: 50%;
-    height: auto;
-    background-color: rgba(255, 255, 255, 0.0);
-    border: 5px solid transparent;
-    
-}
 
 .buttons-accord{
     display: inline-block;
@@ -264,20 +333,22 @@ footer {
     min-width: 100%;
     display: flex;
     justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    vertical-align: center;
 
 }
 
-.ui-accordion-header{
-    background-color:rgb(21,184,183, 0.6);
- }
 
   
 #nav-menu ul{
     padding: 0px;
     list-style: none;
-    height: auto;
+    margin-top: 0px;
   }
-  
+  #nav-menu img{
+      margin:auto;
+  }  
   ul.dropdown{ 
     margin: auto;
     max-height: 100px; 
@@ -288,12 +359,11 @@ footer {
     float: left; 
     width: 180px; 
     position: relative;
-    background: rgba(236, 240, 241, 0);
 
   }
   
   ul.dropdown a:hover{ 
-    color: rgb(255,255,255, 0.5);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
   ul.dropdown li a { 
@@ -308,9 +378,10 @@ footer {
   
   ul.dropdown li a:hover,
   ul.dropdown li a.hover{ 
-    background: rgb(21,184,183, 0.6);
+    background: rgba(12, 177, 206, 0.8);
     position: relative;
     color: rgb(0,0,0,1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
   
@@ -324,21 +395,20 @@ footer {
   
   ul.dropdown ul li { 
     font-weight: normal; 
-    background: rgb(246,246,246,0.5);
-    color:rgb(255,225,255, 1);
-    border-bottom: 1px solid rgb(204,204,204, 0.5);
+    background: rgb(246,246,246,0.7);
+    border-bottom: 1px solid rgb(204,204,204, 0.7);
   }
   
   ul.dropdown ul li a{ 
     display: block; 
     color: rgb(52,73,94) !important;
-    background: rgb(246,246,246,0.5) !important;
+    background: rgb(246,246,246,0.7) !important;
   } 
   
   ul.dropdown ul li a:hover{
     display: block; 
-    background:  rgb(21,184,183, 0.6) !important;
-    color:rgb(255,225,255) !important;
+    color: rgb(52,73,94) !important;
+    background:  rgb(12,177,206, 0.8) !important;
   } 
   
   .drop > a{
@@ -362,7 +432,20 @@ footer {
     border-right: 5px solid transparent;
   }
 
-@media screen and (max-width: 726px) {
+  #filter-history {
+      margin-top: 10px;
+      display: none;
+      width: auto;
+      text-align: center;
+      background-color: rgba(75, 75, 75, 0.7);
+      color: #dbdbdb;
+      padding: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 10px;
+  }
+
+ 
+@media screen and (max-width: 800px) {
     #logo-div {
         display: none;
     } 
@@ -379,38 +462,40 @@ footer {
         margin-right: 1%;
         margin-left: 1%;
     }
-    #accordion-resizer {
-        margin: auto;
-        width: 80%;
-        height: auto;
-        background-color: rgba(255, 255, 255, 0.0);
-        border: 5px solid transparent;
-        text-align: center;
-        
-    }
 
     #nav-menu{
+        text-decoration: none;
         background-color: rgba(255, 255, 255, 0.0);
         display: flex;
         justify-content: center;
-        height: 400px;
+        min-height: 238px;
+        margin-bottom: 10px;
+        border-radius: 10px;
     
     }
 
+    #nav-menu ul{
+        padding: 0px;
+        list-style: none;
+        margin-top: 0px;
+        min-width: 100%;
+        
+      }
 
 
-      
       ul.dropdown li{ 
         font-weight: bold; 
         float: left; 
-        width: 100%; 
+        min-width: 100%; 
         position: relative;
         background: #ecf0f1;
+        
     
       }
       
       ul.dropdown a:hover{ 
         color: #000; 
+        cursor: pointer;
       }
       
       ul.dropdown li a { 
@@ -427,11 +512,11 @@ footer {
 
       ul.dropdown li a:hover,
       ul.dropdown li a.hover{ 
-        background: rgb(21,184,183, 0.6);
+        background: rgb(21,184,183, 0.7);
         position: relative;
         color: #fff;
+        cursor: pointer;
       }
-      
       
       ul.dropdown ul{ 
        display: none;
@@ -456,8 +541,9 @@ footer {
       
       ul.dropdown ul li a:hover{
         display: block; 
-        background: rgb(21,184,183, 0.6);
+        background: rgb(21,184,183, 0.7);
         color: #fff !important;
+        cursor: pointer;
       } 
       
       .drop > a{
@@ -479,39 +565,67 @@ footer {
          border-left: 5px solid transparent;
         border-top: 5px solid #fff;
         border-right: 5px solid transparent;
+        cursor: pointer;
       }
     
 }
 
-
 /******history*********/
 
-#history-table table{
-    margin: auto;
-}
-#history-table{
+
+
+
+  /**********table**********************/
+  .card-table{
+      border-radius: 10px;
+      margin-left: 10%;
+      margin-right: 10%;
+      width: 80%;
+      color: whitesmoke !important;
+      border-collapse: collapse;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+
+
+  .card-table tbody{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .card-table tr:first-child{
     padding: 10px;
-    overflow: auto;
-}
-.nothing-to-show {
-    text-align: center;
-}
-table.paleBlueRows {
-    min-width: 350px;
-    min-height: 200px;
-    text-align: center;
-    color: #4b4b4b;
-    border-collapse: collapse;
-  }
-  table.paleBlueRows td, table.paleBlueRows th {
-    padding: 3px 2px;
-    font-weight: normal;
-  }
+    border-top:none !important;
 
-  table.paleBlueRows thead {
-    background-color: rgba(75, 75, 75, 0.5);
-    color: #f0f0f0;
-    font-weight: normal;
+}
+
+  .card-table tr:nth-child(odd){
+      padding: 10px;
+      border-top:2px solid rgba(75, 75, 75, 0.7);
 
   }
+
+  .card-table td{
+    padding: 10px;
+
+    }
+
+  
+  .money-cell{
+      text-align: right;
+      font-size: 35px;
+  }
+
+  .left-cell{
+    text-align: left;
+  }
+
+  #pages {
+    margin-bottom: 10px;
+}
+
+#add-acc-form{
+    overflow: hidden;
+}
+
 

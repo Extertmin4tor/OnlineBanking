@@ -1,9 +1,12 @@
 <?php
 require_once "util.php";
-ini_set('session.gc_maxlifetime', 300);
 ini_set('session.cookie_lifetime', 0);
 session_start();
-
+setcookie(session_name(), session_id(), time() + 300, null, null, True, True);
+require_once("csrf.class.php");
+$csrf = new csrf();
+$token_id = $csrf->get_token_id();
+$token_value = $csrf->get_token($token_id);
 if (!isset($_SESSION['userid'])) {
     header("Location: index.php");
 }
@@ -45,6 +48,7 @@ if (!isset($_SESSION['userid'])) {
                 <button id="logout" class="button">Log out</button>
             </a>
     </div>
+    
 </header>
 <div id="nav-menu">
     <ul class="dropdown">
@@ -61,32 +65,36 @@ if (!isset($_SESSION['userid'])) {
     </ul>
 </div>
 <div id="main">
-    <div id="personal">
-        <div id="accordion-resizer" class="ui-widget-content">
-            <div id="accordion">
+        <table class="card-table">
+            <tbody>
                 <?php
                 $db = BD_init();
-                $query = $db->prepare('SELECT * FROM accounts WHERE user_id = :user_id');
+                $query = $db->prepare('SELECT a.id, a.value, a.card_type_2, c.pic_reference FROM accounts a
+                INNER JOIN cards c on a.card_type = c.card_type WHERE a.user_id=:user_id ORDER BY a.id');
                 $query->bindParam(':user_id', $_SESSION['userid']);
                 $query->execute();
+    
                 if ($query->rowCount() != 0) {
                     $selected = $query->fetchAll();
                     foreach ($selected as $row) {
-                        echo "<h3 class ='test'>" . $row['id'] . "</h3><div class ='test'>
-             Value: " . $row['value'] . "
-              </div>";
+                        $path = $row['pic_reference'];
+                        echo "<tr>"
+                            ."<td rowspan = '2' width='25%'><img src=$path width='150' height='100'></td><td class='left-cell'>". $row['id']."</td>"
+                            ."<td rowspan = '2' class='money-cell'>$" . $row['value']."</td>"
+                            ."</tr><tr><td class='left-cell'>".$row['card_type_2']."</td>"
+                            ."</tr>";        
                     }
                 } else {
                     echo "<h3 class='test2'>You have no accounts yet</h3>";
                 }
                 ?>
-            </div>
-        </div>
-    </div>
+            </tbody>
+         </table>
 </div>
 <div id="transfer-dialog" class="custom-overlay" title="Transfer">
     <p class="validateTips">All form fields are required.</p>
     <form method="post">
+        <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         <label for="number_from">From</label><br>
         <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
         <label for="number_to">To</label><br>
@@ -99,6 +107,7 @@ if (!isset($_SESSION['userid'])) {
 <div id="mobile-payment-dialog" class="custom-overlay" title="Mobile payment">
     <p class="validateTips">All form fields are required.</p>
     <form method="post">
+        <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         <label for="number_from">From</label><br>
         <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
         <label for="number_to">Mobile number</label><br>
@@ -111,6 +120,7 @@ if (!isset($_SESSION['userid'])) {
 <div id="utility-payment-dialog" class="custom-overlay" title="Utility payment">
     <p class="validateTips">All form fields are required.</p>
     <form method="post">
+        <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         <label for="number_from">From</label><br>
         <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
         <label for="number_to">Personl account</label><br>
@@ -120,21 +130,21 @@ if (!isset($_SESSION['userid'])) {
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
 </div>
-<div id="filter-history" class="custom-overlay" title="Filter history">
+<div id="add-acc-form" class="custom-overlay" title="Add an account">
     <p class="validateTips">All form fields are required.</p>
-    <form method="post" id="filter-histor-form" action="history.php">
-        <label for="number_from">From</label><br>
-        <input type="text" name="from" class="text ui-widget-content ui-corner-all pop_form_elems"><br>
-        <label for="number_to">To</label><br>
-        <input type="text" name="personal-account" class="text ui-widget-content ui-corner-all pop_form_elems"><br>
-        <label for="value">Value</label><br>
-        <input type="text" name="value" class="text ui-widget-content ui-corner-all  pop_form_elems"><br>
-        <label for="value">Date from</label><br>
-        <input type="date" name="date-bot"  class="text ui-widget-content ui-corner-all  pop_form_elems"><br>
-        <label for="value">Date to</label><br>
-        <input type="date" name="date-top" size="30" class="text ui-widget-content ui-corner-all  pop_form_elems"><br>
-        <label for="value">Operation</label><br>
-        <input type="text" name="operation" class="text ui-widget-content ui-corner-all  pop_form_elems"><br>
+    <form method="post" id="add-acc" action="create_account.php">
+        <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
+        <label for="payment-system-choose">Payment system</label><br>
+        <select id="payment-system-choose" name="payment-system-choose" size="3">
+            <option value="Master Card">Master Card</option>
+            <option value="Visa">Visa</option>
+            <option value="American Express">Amertican Express</option>
+        </select><br>
+        <label for="card-type-2">Card type</label><br>
+        <select id="card-type-2" name="card-type-2" size="2">
+            <option value="debit">Debit</option>
+            <option value="credit">Credit</option>
+        </select>
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
 </div>

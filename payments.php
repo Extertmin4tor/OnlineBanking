@@ -1,8 +1,10 @@
 <?php
 require_once "util.php";
-ini_set('session.gc_maxlifetime', 300);
 ini_set('session.cookie_lifetime', 0);
 session_start();
+setcookie(session_name(), session_id(), time() + 300, null, null, True, True);
+require_once("csrf.class.php");
+
 
 function json_error(){
     $return =  $_POST;
@@ -12,9 +14,17 @@ function json_error(){
 }
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
+    $csrf = new csrf();
+    $token_id = $csrf->get_token_id();
+    $token_value = $csrf->get_token($token_id);
+    if($csrf->check_valid($_POST['csrf_token'], $_POST['csrf_id'])){
+    }
+    else{
+        echo 'Not Valid';
+        die();
+    }
     if(!validateValue($_POST['code']) && !validateValue($_POST['value']) && !validateValue($_POST['from']) && !validateValue($_POST['to'])){
         json_error();
-        die();
     }
     $db = BD_init();
     try{
@@ -24,12 +34,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         $query->execute();
     } catch(Exception $e){
         json_error();
-        die();
     }
     $value_from = 0;
     if ($query->rowCount() == 0) {
         json_error();
-        die();
     } else {
         $selected = $query->fetchAll();
         foreach ($selected as $row) {
@@ -47,7 +55,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         }
         catch(Exception $e){
             json_error();
-            die();
     }
 }else{
     json_error();

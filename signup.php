@@ -1,8 +1,7 @@
 <?php
 require_once "util.php";
-ini_set('session.gc_maxlifetime', 300);
-ini_set('session.cookie_lifetime', 0);
 session_start();
+setcookie(session_name(), session_id(), time() + 300, null, null, True, True);
 include("simple-php-captcha.php");
 set_include_path(get_include_path() . PATH_SEPARATOR . 'phpseclib');
 include('Crypt/RSA.php');

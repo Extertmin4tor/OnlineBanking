@@ -1,39 +1,41 @@
 <?php
 require_once "util.php";
-ini_set('session.gc_maxlifetime', 300);
 ini_set('session.cookie_lifetime', 0);
 session_start();
+setcookie(session_name(), session_id(), time() + 300, null, null, True, True);
 
 if (!isset($_SESSION['userid'])) {
     header("Location: index.php");
 }
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+    $card_type_1 = $_POST['card_type_1'];
+    $card_type_2 = $_POST['card_type_2'];
+    if (!empty($card_type_1) && !empty($card_type_2)){
+        $card_type_1 = test_input($card_type_1);
+        $card_type_2 = test_input($card_type_2);
+        $db = BD_init();
+        $query = $db->prepare('INSERT INTO accounts (user_id, value, card_type, card_type_2) VALUES (:userid, :value, :card_type_1, :card_type_2)');
+        $query->bindParam(':userid', $_SESSION['userid']);
+        $money = 1000;
+        $query->bindParam(':value', $money);
+        $query->bindParam(':card_type_1', $card_type_1);
+        $query->bindParam(':card_type_2', $card_type_2);
+        $query->execute();
 
-$db = BD_init();
-
-
-$query = $db->prepare('INSERT INTO accounts (user_id, value) VALUES (:userid, :value)');
-$query->bindParam(':userid', $_SESSION['userid']);
-$money = 1000;
-$query->bindParam(':value', $money);
-$query->execute();
-
-$query = $db->prepare('SELECT id FROM accounts WHERE user_id = :userid ORDER BY id DESC LIMIT 1');
-$query->bindParam(':userid', $_SESSION['userid']);
-$query->execute();
-$id = 0;
-if ($query->rowCount() == 0) {
-    print "Error!";
-} else {
-    $selected = $query->fetchAll();
-    foreach ($selected as $row) {
-        $id = $row['id'];
+        $return = $_POST;
+        $return['code'] = 'ok';
+        echo json_encode($return);
+    }
+    else{
+        echo 'error';
+        die();
     }
 }
 
-$return = $_POST;
-$return['code'] = 'ok';
-$return['id'] = $id;
-
-echo json_encode($return);
-
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>

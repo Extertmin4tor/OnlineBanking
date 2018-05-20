@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    var form, form1, form2;
-
+    var form, form1, form2, form3;
+    
     var from = $("#transfer-dialog [name = from]");
     var to = $("#transfer-dialog [name = to]");
     var value = $("#transfer-dialog [name = value]");
@@ -24,6 +24,10 @@ $(document).ready(function(){
     var operation = $("#filter-history [name = operation]");
     var allFields3 = $( [] ).add(from2).add(to2).add(value2).add(date_bot).add(date_top).add(operation);
 
+    var card_type_1 = $('#add-acc [name = payment-system-choose]');
+    var card_type_2 = $('#add-acc [name = card-type-2]')
+    var allFields4 = $( [] ).add(card_type_1).add(card_type_2);
+
     var maxHeight = 400;
 
 
@@ -36,7 +40,7 @@ $(document).ready(function(){
     }
     var dialog = $( "#transfer-dialog").dialog({
         autoOpen: false,
-        height: 400,
+        height: 500,
         width: 300,
         modal: true,
         resizable: false,
@@ -56,9 +60,38 @@ $(document).ready(function(){
         }
     });
 
-    var mobile_dialog = $("#mobile-payment-dialog").dialog({
+    var create_account_dialog = $( "#add-acc-form").dialog({
         autoOpen: false,
         height: 400,
+        width: 'auto',
+        modal: true,
+        resizable: false,
+        draggable: false,
+        buttons: {
+            "Create": AddAccount,
+            Cancel: function() {
+                create_account_dialog.dialog( "close" );
+            }
+        },
+        open: function() {
+            $('#payment-system-choose').selectmenu({
+                width: '100%'
+            });
+            $('#card-type-2').selectmenu({
+                width: '100%'
+            });
+            $('.ui-widget-overlay').addClass('custom-overlay');
+        },
+        close: function() {
+            form3[ 0 ].reset();
+            allFields4.removeClass( "ui-state-error" );
+        }
+    });
+
+
+    var mobile_dialog = $("#mobile-payment-dialog").dialog({
+        autoOpen: false,
+        height: 480,
         width: 300,
         modal: true,
         resizable: false,
@@ -82,7 +115,7 @@ $(document).ready(function(){
 
     var utility_dialog = $( "#utility-payment-dialog").dialog({
         autoOpen: false,
-        height: 400,
+        height: 480,
         width: 300,
         modal: true,
         resizable: false,
@@ -104,26 +137,7 @@ $(document).ready(function(){
         }
     });
 
-    var filter_dialog = $( "#filter-history").dialog({
-        autoOpen: false,
-        height: 600,
-        width: 300,
-        modal: true,
-        resizable: false,
-        draggable: false,
-        buttons: {
-            "Show": showHistory,
-            Cancel: function() {
-                filter_dialog.dialog( "close" );
-            }
-        },
-        open: function() {
-            $('.ui-widget-overlay').addClass('custom-overlay');
-        },
-        close: function() {
-            allFields3.removeClass( "ui-state-error" );
-        }
-    });
+
 
     
     form = dialog.find( "form" ).on( "submit", function( event ) {
@@ -141,6 +155,11 @@ $(document).ready(function(){
         makeUtilityPayment();
     });
 
+    form3 = create_account_dialog.find( "form" ).on( "submit", function( event ) {
+        event.preventDefault();
+        AddAccount();
+
+    });
 
 
     $(function() {
@@ -153,7 +172,7 @@ $(document).ready(function(){
       $(function() {
         $('.history-li').click(function(e)
         {
-            filter_dialog.dialog( "open" );
+            window.location.replace("/history.php");
         });
       });
 
@@ -179,36 +198,8 @@ $(document).ready(function(){
       $(function() {
         $('.create-li').click(function(event)
         {
-                event.preventDefault();
-                    $.post("create_account.php",
-                        function (returnedData) {
-                            if (returnedData.code == "ok") {
-                                if ($('.test').length == 0) {
-                                    $('.test2').detach();
-                                    $('#accordion').append("<h3 class ='test'>" + returnedData.id + "</h3>" +
-                                        "<div class ='test'>" +
-                                        "Value: 1000" +
-                                        "</div>"
-                                    );
-                                    $("#accordion").accordion({
-                                        heightStyle: "content"
-                                    });
-                                }
-                                else{
-                                    $('#accordion').append("<h3 class ='test'>" + returnedData.id + "</h3>" +
-                                        "<div class ='test'>" +
-                                        "Value: 1000" +
-                                        "</div>"
-                                    );
-                                    
-                                    $("#accordion").accordion("refresh");
-                                    
-        
-                                }
-                            }
-                        },
-                        "json"
-                    );
+            create_account_dialog.dialog("open");
+
         });
       });
 
@@ -280,9 +271,9 @@ $(document).ready(function(){
         var valid_from = ispNumber(from.val(), from);
         var valid_to = ispNumber(to.val(), to);
         var valid_value = ispNumber(value.val(), value);
-
+        var csrf_token = $("#transfer-dialog").find("input:first");
         if(valid_from && valid_to && valid_value){
-            $.post("acc_operations.php", {from:from.val(), to:to.val(), value:value.val()},
+            $.post("acc_operations.php", {csrf_token: csrf_token.val(), csrf_id: csrf_token.attr('name'), from:from.val(), to:to.val(), value:value.val()},
         function(returnedData){
             if(returnedData.code == "ok"){
                 location.reload();
@@ -308,21 +299,12 @@ $(document).ready(function(){
         var valid_from = ispNumber(from1.val(), from1);
         var valid_to = isPhoneNumber(to1.val(), to1);
         var valid_value = ispNumber(value1.val(), value1);
-
+        var csrf_token = $("#mobile-payment-dialog").find("input:first");
         if(valid_from && valid_to && valid_value){
-            $.post("payments.php", {code: "mobile", from:from1.val(), to:to1.val(), value:value1.val()},
+            $.post("payments.php", {code: "mobile", csrf_token: csrf_token.val(), csrf_id: csrf_token.attr('name'),  from:from1.val(), to:to1.val(), value:value1.val()},
             function(returnedData){
-                if(returnedData.code = "ok"){
-                    location.reload();
-                    // $('#accordion').find("h3:contains('" + from1.val() + "')").next().replaceWith(
-                    //     "<div class ='test'>" +
-                    //     "Value: " + returnedData.value_from +
-                    //     "</div>"
-                    //    );
-                    // $("#accordion").accordion("refresh");
-                    // mobile_dialog.dialog("close");
-                    // succ_dialog.dialog("open");
-                    
+                if(returnedData.code == "ok"){
+                    location.reload();                 
                 }
                 else{
                     from1.val('');
@@ -340,19 +322,11 @@ $(document).ready(function(){
         var valid_from = ispNumber(from2.val(), from2);
         var valid_to = ispNumber(to2.val(), to2);
         var valid_value = ispNumber(value2.val(), value2);
-
+        var csrf_token = $("#utility-payment-dialog").find("input:first");
         if(valid_from && valid_to && valid_value){
-            $.post("payments.php", {code: "utility", from:from2.val(), to:to2.val(), value:value2.val()},
+            $.post("payments.php", {code: "utility", csrf_token: csrf_token.val(), csrf_id: csrf_token.attr('name'), from:from2.val(), to:to2.val(), value:value2.val()},
             function(returnedData){
-                if(returnedData.code = "ok"){
-                    // $('#accordion').find("h3:contains('" + from2.val() + "')").next().replaceWith(
-                    //     "<div class ='test'>" +
-                    //     "Value: " + returnedData.value_from +
-                    //     "</div>"
-                    //    );
-                    // $("#accordion").accordion("refresh");
-                    // utility_dialog.dialog("close");
-                    // succ_dialog.dialog("open");
+                if(returnedData.code == "ok"){
                     location.reload();
                 }
                 else{
@@ -366,6 +340,22 @@ $(document).ready(function(){
 
     }
 
+    function AddAccount(){
+        allFields4.removeClass( "ui-state-error" );
+        var csrf_token = $("#utility-payment-dialog").find("input:first");
+        $.post("create_account.php", {csrf_token: csrf_token.val(), csrf_id: csrf_token.attr('name'), card_type_1:card_type_1.val(), card_type_2:card_type_2.val()},
+            function(returnedData){
+                if(returnedData.code == "ok"){
+                    location.reload();
+                }
+                else{
+                    from1.val('');
+                    to1.val('');
+                    value1.val('');
+                    wrong_dialog.dialog("open");
+                }
+            }, "json");
+    }
     wrong_dialog = $("#wrong-dialog").dialog({
         resizable: false,
         draggable: false,

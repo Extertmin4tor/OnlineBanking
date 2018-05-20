@@ -1,9 +1,12 @@
 <?php
-ini_set('session.gc_maxlifetime', 300);
 ini_set('session.cookie_lifetime', 0);
-session_set_cookie_params(0);
 session_start();
+setcookie(session_name(), session_id(), time() + 300, null, null, True, True);
+require_once("csrf.class.php");
 include("simple-php-captcha.php");
+$csrf = new csrf();
+$token_id = $csrf->get_token_id();
+$token_value = $csrf->get_token($token_id);
 if (isset($_SESSION['userid'])) {
     header("Location: personal.php");
 }
@@ -42,6 +45,7 @@ $_SESSION['captcha'] = simple_php_captcha();
     <div id="right-header">
         <div id="sign-in" class="widget" title="Sign in">
             <form action="signin.php" method="post">
+                <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
                 <input type="text" name="login" required="required"
                        class="text ui-widget-content ui-corner-all form_elems" placeholder="login">
                 <input type="password" name="password" required="required"
@@ -102,6 +106,15 @@ $_SESSION['captcha'] = simple_php_captcha();
         <?php echo '<img id="captcha" src= "' .$_SESSION['captcha']['image_src']. '"></img>'; ?>
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
+</div>
+<div id="captcha-sign-up" class="custom-overlay" title="Enter captcha">
+<form action="signin.php" method="post">
+        <label for="captcha">Enter symbols</label><br>
+        <input type="text" name="captcha" class="text ui-widget-content ui-corner-all  pop_form_elems"
+               required><br>
+        <?php echo '<img id="captcha" src= "' .$_SESSION['captcha']['image_src']. '"></img>'; ?>
+        <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
+</form>
 </div>
 </body>
 </html>
