@@ -1,10 +1,11 @@
 function loadChunk(page_number, from="", to="", value="", date_bot="", date_top="", type=""){
     $.post("history-data.php", {page:page_number, from:from, to:to, value:value, date_bot:date_bot, date_top:date_top, type:type},
     function(returnedData){
+        var main = $('#main');
         if(returnedData.code == "ok"){
             var data = returnedData.data;
             var pages_count = returnedData.pages_count;
-            var main = $('#main');
+            
             main.empty();
             main.append("<div id='hisotry-table-div'></div>");
             main = main.find('div');
@@ -80,7 +81,6 @@ var current_page = 1;
 
 
 $(function() {
-    
     var maxHeight = 400;
     var from="", to="", value="", date_bot="", date_top="", type="";
     loadChunk(current_page);
@@ -149,6 +149,7 @@ $(function() {
 });
 
 $(function() {
+   
     $('.filter-li').click(function(e)
     {
         if ($('#filter-history').css('display') == 'none'){

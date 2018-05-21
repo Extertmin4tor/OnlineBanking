@@ -76,6 +76,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             $query->bindParam(':login', $login);
             $query->execute();
             $_SESSION['userid'] =  $query->fetchColumn(0);
+            $_SESSION['login'] = $login;
 
         }
         else

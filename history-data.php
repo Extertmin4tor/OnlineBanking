@@ -90,8 +90,7 @@ if (!isset($_SESSION['userid'])) {
             $query->execute();
               
             } catch(Exception $e){
-                echo($e);
-                die();
+                json_error();
                 echo "<div class=\"nothing-to-show\">Nothing to show!</div>";
             }
 

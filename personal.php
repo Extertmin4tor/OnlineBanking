@@ -43,7 +43,8 @@ if (!isset($_SESSION['userid'])) {
         <a href="index.php"><img src="images/logo.png" class="logo"></a>
     </div>
 
-    <div id="manage-buttons">
+    <div id="profile">
+            <?php echo "Hello, ".$_SESSION['login']."<br>"; ?>
             <a href="logout.php">
                 <button id="logout" class="button">Log out</button>
             </a>
@@ -91,8 +92,7 @@ if (!isset($_SESSION['userid'])) {
             </tbody>
          </table>
 </div>
-<div id="transfer-dialog" class="custom-overlay" title="Transfer">
-    <p class="validateTips">All form fields are required.</p>
+<div id="transfer-dialog" class="dialog custom-overlay" title="Transfer">
     <form method="post">
         <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         <label for="number_from">From</label><br>
@@ -104,8 +104,7 @@ if (!isset($_SESSION['userid'])) {
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
 </div>
-<div id="mobile-payment-dialog" class="custom-overlay" title="Mobile payment">
-    <p class="validateTips">All form fields are required.</p>
+<div id="mobile-payment-dialog" class="dialog custom-overlay" title="Mobile payment">
     <form method="post">
         <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         <label for="number_from">From</label><br>
@@ -117,8 +116,7 @@ if (!isset($_SESSION['userid'])) {
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
 </div>
-<div id="utility-payment-dialog" class="custom-overlay" title="Utility payment">
-    <p class="validateTips">All form fields are required.</p>
+<div id="utility-payment-dialog" class="dialog  custom-overlay" title="Utility payment">
     <form method="post">
         <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         <label for="number_from">From</label><br>
@@ -130,8 +128,7 @@ if (!isset($_SESSION['userid'])) {
         <input type="submit" class="button" tabindex="-1" style="position:absolute; top:-1000px"><br>
     </form>
 </div>
-<div id="add-acc-form" class="custom-overlay" title="Add an account">
-    <p class="validateTips">All form fields are required.</p>
+<div id="add-acc-form" class="dialog custom-overlay" title="Add an account">
     <form method="post" id="add-acc" action="create_account.php">
         <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         <label for="payment-system-choose">Payment system</label><br>

@@ -31,10 +31,10 @@ body{
   text-align: center;
 }
 .history tr:nth-child(odd){
-  background-color: rgba(12, 177, 206, 0.2);
+  background-color: rgb(19,219,138,0.2);
 }
 .history tr:nth-child(1){
-  background-color: rgba(12, 177, 206, 0.9);
+  background-color:rgb(19,219,138,0.7 );
 }
 .history thead  {
    height: 60px;
@@ -49,27 +49,30 @@ body{
   border-radius: 10px;
 }
 
-.filter-table{
+/* .filter-table{
   margin:auto;
   border-collapse: collapse;
+} */
+#filter-history{
+  text-align: center;
 }
-
 #filter-history input{
-  width: 60% !important;
+  width: 20%;
   height: auto;
 }
+#filter-history label{
+  width: 10%;
+}
 #filter-history .button {
-  width: 20% !important;
+  width: auto !important;
 }
-form .button{
-  width: 100% !important;
-}
+
 
 @media screen and (max-width: 800px) {
 
   #nav-menu{
     text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.0);
+    background-color: rgba(255, 255, 255, 0.7);
     display: flex;
     justify-content: center;
     min-height: 127px !important;
@@ -78,5 +81,8 @@ form .button{
 
 }
 
-
+#filter-history input{
+  width: 90%;
+  height: auto;
+}
 }

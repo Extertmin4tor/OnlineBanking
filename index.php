@@ -47,12 +47,14 @@ $_SESSION['captcha'] = simple_php_captcha();
             <form action="signin.php" method="post">
                 <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
                 <input type="text" name="login" required="required"
-                       class="text ui-widget-content ui-corner-all form_elems" placeholder="login">
+                       class="text ui-widget-content ui-corner-all form_elems" placeholder="login"><br>
                 <input type="password" name="password" required="required"
-                       class="text ui-widget-content ui-corner-all form_elems" placeholder="password">
-                <input type="submit"  name="submit" class="button submit-button" value="Log in">
+                       class="text ui-widget-content ui-corner-all form_elems" placeholder="password"><br>
+                       <input type="submit"  name="submit" class="button"  value="Log in">
+                       <button id="create-user" class="button" >Registration</button>
+                
             </form>
-            <button id="create-user" class="button">Become a client</button>
+            
         </div>
     </div>
 
@@ -88,8 +90,7 @@ $_SESSION['captcha'] = simple_php_captcha();
     <p id="info">Вставить текст.</p>
 </footer>
 <div id="sign-up" class="custom-overlay sign-up" title="Sign up">
-    <p class="validateTips">All form fields are required.</p>
-    <form action="signup.php" method="post">
+    <form action="signup.php" class="sign-up-form" method="post">
         <label for="name">Login</label><br>
         <input type="text" name="login" class="text ui-widget-content ui-corner-all pop_form_elems" required><br>
         <label for="email">E-mail</label><br>

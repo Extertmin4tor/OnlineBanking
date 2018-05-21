@@ -117,20 +117,20 @@ $(document).ready( function() {
 
         dialog = $( "#sign-up").dialog({
             autoOpen: false,
-            height: 600,
-            width: 400,
+            height: 680,
+            width: 360,
             modal: true,
             resizable: false,
             draggable: false,
 
             buttons: {
                 "Create an account": addUser,
-                Cancel: function() {
-                    dialog.dialog( "close" );
-                }
             },
             open: function() {
                 $('.ui-widget-overlay').addClass('custom-overlay');
+                $('.ui-widget-overlay').click(function(){
+                    dialog.dialog('close');
+                });
             },
             close: function() {
                 form[ 0 ].reset();
@@ -143,7 +143,8 @@ $(document).ready( function() {
             addUser();
         });
 
-        $( "#create-user" ).on( "click", function() {
+        $( "#create-user" ).on( "click", function(event) {
+            event.preventDefault();
             dialog.dialog( "open" );
         });
         $('html').show();

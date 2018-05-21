@@ -122,7 +122,7 @@ function save_history($db, $from_acc, $value, $to_acc, $type){
         $query->execute();
     }
     catch(Exception $e){
-        echo $e;
+        json_error();
 }
 
 

@@ -20,8 +20,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     if($csrf->check_valid($_POST['csrf_token'], $_POST['csrf_id'])){
     }
     else{
-        echo 'Not Valid';
-        die();
+        json_error();
+        
     }
     if(!validateValue($_POST['code']) && !validateValue($_POST['value']) && !validateValue($_POST['from']) && !validateValue($_POST['to'])){
         json_error();
@@ -92,7 +92,7 @@ function save_history($db, $type){
     }
     catch(Exception $e){
         json_error();
-        die();
+
 }
 }
 function validateValue($value){

@@ -3,31 +3,41 @@ html {
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    font-family:sans-serif!important;
+    font-family:Arial!important;
     font-size: 20px !important;
     font-weight: 200;
     color: #f0f0f0;
     display: none;
-    border-radius: 10px;
 }
 /****************header****************/
 header{
     margin-bottom: 10px;
-
-    padding: 2em 10%;
+    padding: 2em 5%;
+    
 }
 
-#right-header {
-    display: inline-block;
+::placeholder{
+    color: #dbdbdb;
+    opacity: 1;
+}
 
-    
-
+#right-header, #profile {
+    float: right;
+    background-color: rgba(75, 75, 75, 0.7);
+    color: #dbdbdb;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}
+#profile{
+    text-align: center;
 }
 #logo-div {
-    display: inline-block;
-    width: 50%;
+    width: auto;
     height: 100%;
     text-align: left;
+    float: left;
 }
 #logo-div img {
     height: 90%;
@@ -47,31 +57,55 @@ header::after {
     width: 100%;
 }
 
-#sign-in form {
-    float:left;
-    
-}
 form input{
-    background: rgb(246,246,246,0.7) !important;
+    background: rgb(19,219,138,0.7) !important;
     border: 1px solid  rgba(75, 75, 75, 0.7) !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.ui-widget-header{
-    background: rgb(246,246,246,0.7) !important;
-    border: 1px solid  rgba(75, 75, 75, 0.7) !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+.sign-up{
+    background: rgb(246,246,246,0.0) !important;
+    border: 1px solid  rgba(75, 75, 75, 0.0) !important;
+    text-align: center;
+    width:auto !important;
+    padding: 0px !important;
+    overflow: hidden !important;
+    margin:0px;
+    padding-right: 80px;
+
+   
 }
-.ui-widget-content{
-    background: rgb(246,246,246,0.7) !important;
-    border: 1px solid  rgba(75, 75, 75, 0.7) !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+.sign-up-form{
+    text-align: center;
+    width: auto;
+    margin: auto;
+    overflow: hidden !important;
+
+
+}
+.sign-up-form:nth-child(){
+    width: 100%;
+}
+.ui-widget-header{
+    background: rgb(246,246,246,0.0) !important;
+    border: 1px solid  rgba(75, 75, 75, 0.0) !important;
+
+}
+
+.ui-dialog-buttonpane{
+    background: rgb(246,246,246,0.0) !important;
+    border: 1px solid  rgba(75, 75, 75, 0.0) !important;
+    text-align: center;
+    padding: 8px !important;
 }
 
 .ui-widget{
-    background: rgb(246,246,246,0.7) !important;
+    background: rgba(12, 177, 206, 0.7 ) !important;
     border: 1px solid  rgba(75, 75, 75, 0.7) !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
 }
 
 #create-user{
@@ -80,14 +114,13 @@ form input{
 
 
 
-.button {
-   
+.ui-button {
     text-align: center;
-    margin: 6px !important;
-    padding: 6.4px !important;
+    padding: 6px !important;
     background: rgb(246,246,246,0.7) !important;
     border: 1px solid  rgba(75, 75, 75, 0.7) !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
 }
 
 .ui-widget-overlay.custom-overlay {
@@ -98,30 +131,12 @@ form input{
     
 }
 
-
-
-input {
-    padding: .4em;
-}
-
-input {
+.ui-widget-content{
+    padding: 6px;
+    font-size: 1em;
     margin: 5px;
-    font-size: 2ch;
-    font-family: "sans-serif";
-    padding: .35em;
-    background: rgba(255, 255, 255, 0.7);
+    color: rgb(190, 229, 250) !important;
 
-}
-
-button{
-    margin: 6px;
-    padding: .35em;
-    
-}
-
-.submit-button{
-    margin: 5px;
-    padding: .35em;
 }
 
 /**********slider************************/
@@ -143,7 +158,19 @@ button{
     justify-content: center;
     padding: 10px;
 }
+.dialog{
+    overflow: hidden !important;
+}
+.ui-state-active{
+    background-color: rgb(246,246,246,0.9) !important;
+    border: 1px solid  rgba(75, 75, 75, 0.5) !important;
+    color: #454545 !important;
+    margin-bottom: 5px !important;;
+}
 
+#payment-system-choose-menu{
+    background: rgba(12, 177, 206, 0.9 ) !important;
+}
 
 #viewpoint {
     display: table;
@@ -191,7 +218,7 @@ button{
 .slide-item {
     width: 100%;
     min-height: 400px;
-    font-family:'sans-serif';
+    font-family:'Arial';
 }
 
 #next-btn {
@@ -318,18 +345,24 @@ footer {
 .buttons-accord{
     display: inline-block;
 }
-
-
+.ui-dialog-titlebar-close{
+    display: none;
+}
+.ui-dialog{
+    overflow:hidden;
+}
 #captcha{
-    display: block;
-    margin: 0 auto;
-    padding-top: 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left:10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 
 
 #nav-menu{
     background-color: rgb(236,240,241, 0.7);
+    background: rgba(255, 255, 255, 0.7);
     min-width: 100%;
     display: flex;
     justify-content: center;
@@ -435,7 +468,7 @@ footer {
   #filter-history {
       margin-top: 10px;
       display: none;
-      width: auto;
+      width: auto !important;
       text-align: center;
       background-color: rgba(75, 75, 75, 0.7);
       color: #dbdbdb;
@@ -444,12 +477,51 @@ footer {
       border-radius: 10px;
   }
 
- 
+  .ui-button:active{
+    outline: none !important;
+    background-color: rgba(75, 75, 75, 0.7) !important;
+  }
+
+
 @media screen and (max-width: 800px) {
+    
+    
+    
+    .money-cell{
+        font-size: 20px !important;
+        padding: 0px !important;
+        width: auto !important;
+        text-align: right !important;
+    }
     #logo-div {
         display: none;
     } 
-    
+    header{  
+        text-align: center;
+    }
+    header > div::before {
+        content: '';
+        height: 100%;
+    }
+    header::after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+    }
+    #right-header {
+        
+        background-color: rgba(75, 75, 75, 0.7);
+        color: #dbdbdb;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 10px; 
+        margin:auto; 
+        max-width: 80%;
+        text-align: left;
+    }
+
+    #right-header  .form_elems{
+        width: 90%;
+    }
     #viewpoint {
         display: table;
         position: relative;
@@ -465,7 +537,8 @@ footer {
 
     #nav-menu{
         text-decoration: none;
-        background-color: rgba(255, 255, 255, 0.0);
+        background-color: rgba(255, 255, 255, 0.7);
+                background: rgba(255, 255, 255, 0.7);
         display: flex;
         justify-content: center;
         min-height: 238px;
@@ -567,10 +640,28 @@ footer {
         border-right: 5px solid transparent;
         cursor: pointer;
       }
+
+      .card-table tr td:first-child{
+        display: none;
+    
+        }
+
+        .card-table{
+            border-radius: 10px;
+            margin:auto !important;
+            width: 90%  !important;
+            background: rgb(19,219,138,0.7);
+            color: whitesmoke !important;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .card-table tbody{
+            margin:auto !important;
+          }
     
 }
 
-/******history*********/
 
 
 
@@ -581,6 +672,7 @@ footer {
       margin-left: 10%;
       margin-right: 10%;
       width: 80%;
+      background: rgb(19,219,138,0.7);
       color: whitesmoke !important;
       border-collapse: collapse;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -614,6 +706,7 @@ footer {
   .money-cell{
       text-align: right;
       font-size: 35px;
+      padding-right: 50px !important;
   }
 
   .left-cell{
@@ -627,5 +720,4 @@ footer {
 #add-acc-form{
     overflow: hidden;
 }
-
 

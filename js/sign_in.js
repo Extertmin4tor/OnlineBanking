@@ -36,9 +36,7 @@ function signin() {
                     }
                 });
     }
-    $( ".widget input[type=submit]" ).button({
-        
-    });
+    $( ".widget input[type=submit]" ).button();
     var errorWindow = $("#access-denied-reg-text").dialog({
         resizable: false,
         draggable: false,
@@ -46,8 +44,12 @@ function signin() {
         modal: true,
         open: function () {
                 $('.ui-widget-overlay').addClass('custom-overlay');
+                $('.ui-widget-overlay').bind('click',function(){
+                    errorWindow .dialog('close');
+                });
         }
     });
+  
     var name = $( "#sign-in [name = login]" ),
         password = $( "#sign-in [name = password]"),
         csrf_token = $("#sign-in").find("input:first");
@@ -76,5 +78,6 @@ function signin() {
                 }
             });
     } );
+
 };
 

@@ -40,7 +40,7 @@ $(document).ready(function(){
     }
     var dialog = $( "#transfer-dialog").dialog({
         autoOpen: false,
-        height: 500,
+        height: 400,
         width: 300,
         modal: true,
         resizable: false,
@@ -53,6 +53,9 @@ $(document).ready(function(){
         },
         open: function() {
             $('.ui-widget-overlay').addClass('custom-overlay');
+            $('.ui-widget-overlay').bind('click',function(){
+                dialog.dialog('close');
+            });
         },
         close: function() {
             form[ 0 ].reset();
@@ -62,8 +65,8 @@ $(document).ready(function(){
 
     var create_account_dialog = $( "#add-acc-form").dialog({
         autoOpen: false,
-        height: 400,
-        width: 'auto',
+        height: 350,
+        width: 300,
         modal: true,
         resizable: false,
         draggable: false,
@@ -81,6 +84,9 @@ $(document).ready(function(){
                 width: '100%'
             });
             $('.ui-widget-overlay').addClass('custom-overlay');
+            $('.ui-widget-overlay').bind('click',function(){
+                create_account_dialog .dialog('close');
+            });
         },
         close: function() {
             form3[ 0 ].reset();
@@ -91,7 +97,7 @@ $(document).ready(function(){
 
     var mobile_dialog = $("#mobile-payment-dialog").dialog({
         autoOpen: false,
-        height: 480,
+        height: 400,
         width: 300,
         modal: true,
         resizable: false,
@@ -104,6 +110,9 @@ $(document).ready(function(){
         },
         open: function() {
             $('.ui-widget-overlay').addClass('custom-overlay');
+            $('.ui-widget-overlay').bind('click',function(){
+                mobile_dialog .dialog('close');
+            });
         },
         close: function() {
             form1[ 0 ].reset();
@@ -115,7 +124,7 @@ $(document).ready(function(){
 
     var utility_dialog = $( "#utility-payment-dialog").dialog({
         autoOpen: false,
-        height: 480,
+        height: 400,
         width: 300,
         modal: true,
         resizable: false,
@@ -128,6 +137,9 @@ $(document).ready(function(){
         },
         open: function() {
             $('.ui-widget-overlay').addClass('custom-overlay');
+            $('.ui-widget-overlay').bind('click',function(){
+                utility_dialog .dialog('close');
+            });
         },
         close: function() {
             form2[ 0 ].reset();
@@ -363,6 +375,9 @@ $(document).ready(function(){
         modal: true,
         open: function() {
             $('.ui-widget-overlay').addClass('custom-overlay');
+            $('.ui-widget-overlay').bind('click',function(){
+                wrong_dialog.dialog('close');
+            });
         }
     });
 

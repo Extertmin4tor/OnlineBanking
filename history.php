@@ -43,7 +43,8 @@ if (!isset($_SESSION['userid'])) {
     <div id="logo-div">
         <a href="index.php"><img src="images/logo.png" class="logo"></a>
     </div>
-    <div id="manage-buttons">
+    <div id="profile">
+    <?php echo "Hello, ".$_SESSION['login']."<br>"; ?>
             <a href="logout.php">
                 <button id="logout" class="button">Log out</button>
             </a>
@@ -58,30 +59,13 @@ if (!isset($_SESSION['userid'])) {
 <div id="filter-history" class="custom-overlay" title="Filter history">
     <form method="post" id="filter-history-form" action="history.php">
             <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
-            <table class="filter-table">
-            <tr>
-            <td><label for="number_from">From</label></td>
-            <td><input type="text" name="from" class="text ui-widget-content ui-corner-all"></td>
-            <td><label for="number_to">To</label></td>
-            <td><input type="text" name="personal-account" class="text ui-widget-content ui-corner-all "</td>
-            
-            </tr>
-            <tr>
-            <td><label for="value">Value</label></td>
-            <td><input type="text" name="value" class="text ui-widget-content ui-corner-all"></td>
-           
-            
-           
-            <td><label for="value">Date from</label></td>
-            <td><input type="date" name="date-bot"  class="text ui-widget-content ui-corner-all"></td>
-</tr>
-<tr>
-            <td><label for="value">Date to</label></td>
-            <td> <input type="date" name="date-top" size="30" class="text ui-widget-content ui-corner-all"></td>
-            <td><label for="value">Operation</label></td>
-            <td><input type="text" name="operation" class="text ui-widget-content ui-corner-all"></td>
-            </tr>
-        </table>
+            <input type="text" name="from" placeholder="From" class="text ui-widget-content ui-corner-all">
+            <input type="text" name="personal-account" placeholder="To" class="text ui-widget-content ui-corner-all ">
+            <input type="text" name="value" placeholder="Value" class="text ui-widget-content ui-corner-all"><br>
+            <input type="date" name="date-bot" placeholder="Date from" class="text ui-widget-content ui-corner-all">
+            <input type="date" name="date-top" size="30" placeholder="Date to" class="text ui-widget-content ui-corner-all">
+            <input type="text" name="operation" placeholder="Operation" class="text ui-widget-content ui-corner-all"><br>
+  
         <input type="submit" id="submit-filter" value="Find" name="submit-filter" class="button">
     </form>
 </div>
