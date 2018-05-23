@@ -31,7 +31,7 @@ function loadChunk(page_number, from="", to="", value="", date_bot="", date_top=
                          </div>");
             main = $('#main');
 
-            var last_page = Math.ceil(pages_count / 15);
+            var last_page = Math.ceil(pages_count / 10);
             //alert(current_page+" "+last_page);
             if(current_page == 1 && last_page!= 1){
                 main.append("<div style='display:none' id='prev'>&#8249;</div>");

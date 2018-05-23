@@ -10,6 +10,7 @@ $token_value = $csrf->get_token($token_id);
 if (!isset($_SESSION['userid'])) {
     header("Location: index.php");
 }
+setlocale(LC_ALL,"US");
 ?>
 
 <!doctype html>

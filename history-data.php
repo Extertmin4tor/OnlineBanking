@@ -4,7 +4,7 @@ require_once "util.php";
 ini_set('session.cookie_lifetime', 0);
 session_start();
 setcookie(session_name(), session_id(), time() + 300, null, null, True, True);
-
+setlocale(LC_ALL,"US");
 if (!isset($_SESSION['userid'])) {
     header("Location: index.php");
 }
@@ -52,9 +52,9 @@ if (!isset($_SESSION['userid'])) {
                     $qr_count  =  $qr_count." AND type=:type";   
                 }
             }
-            $qr = $qr." ORDER BY user_id DESC LIMIT 15 OFFSET :page";
+            $qr = $qr." ORDER BY user_id DESC LIMIT 10 OFFSET :page";
             $query = $db->prepare($qr);
-            $page_number = intval(($page_number - 1) * 15);
+            $page_number = intval(($page_number - 1) * 10);
             $query->bindParam(':page', $page_number, \PDO::PARAM_INT);  
             $query_count = $db->prepare($qr_count);
             if($from=="" && $to=="" && $value=="" && $date_bot=="" && $date_top=="" && $type==""){

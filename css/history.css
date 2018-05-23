@@ -60,13 +60,26 @@ body{
   width: 20%;
   height: auto;
 }
+
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+  font-family: Arial !important;
+  font-size: 20px !important;
+}
+[type="date"] {
+  font-family: Arial !important;
+  font-size: 20px !important;
+  color: #dbdbdb;
+}
 #filter-history label{
   width: 10%;
 }
 #filter-history .button {
   width: auto !important;
+} 
+#filter-history input[type='date']{
+  font-size: -moz-fixed;
 }
-
 
 @media screen and (max-width: 800px) {
 

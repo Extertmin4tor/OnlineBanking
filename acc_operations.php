@@ -75,7 +75,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     } 
     $new_from_val = $value_from - $value;
     $new_to_val = $value_to + $value;
-    if($value_from > $value &&$value > 0 ){
+    if($value_from >= $value &&$value > 0 ){
         try{
             $query = $db->prepare('UPDATE accounts SET value=:value WHERE id=:id');
             $query->bindParam(':value', $new_from_val);
